@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Relatorio_Maria_Carolina</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Relatorio_Maria_Carolina_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Relatorio_Maria_Carolina_files/libs/quarto-html/quarto.js"></script>
+<script src="Relatorio_Maria_Carolina_files/libs/quarto-html/popper.min.js"></script>
+<script src="Relatorio_Maria_Carolina_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Relatorio_Maria_Carolina_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Relatorio_Maria_Carolina_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Relatorio_Maria_Carolina_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Relatorio_Maria_Carolina_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Relatorio_Maria_Carolina_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Relatorio_Maria_Carolina_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Relatorio_Maria_Carolina</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="análise-de-risco-e-retorno" class="level2">
+<h2 class="anchored" data-anchor-id="análise-de-risco-e-retorno">Análise de Risco e Retorno :</h2>
+<p>Nesta etapa, foi realizada uma análise dos <strong>preços de fechamento dos ativos</strong> no período de <strong>01/04/2025 a 27/06/2025</strong>, com o objetivo de compreender a dinâmica histórica e apoiar decisões futuras de investimento. A partir da estratégia <strong>buy and hold</strong> e do referencial <strong>teórico de benchmark</strong>, foram identificados:</p>
+<ul>
+<li><p>O <strong>preço inicial</strong> e <strong>preço final</strong> da série</p></li>
+<li><p>O <strong>menor</strong> e o <strong>maior valor</strong> registrado no período,</p></li>
+<li><p>E a <strong>variação percentual teórica</strong> entre esses pontos, representando o potencial de crescimento ou retração do ativo.</p></li>
+<li><p>Esses indicadores permitem observar a trajetória dos ativos e avaliar sua performance em termos de risco e retorno. O intuito é entender o comportamento passado para <strong>operar de forma mais estratégica no futuro</strong>.</p></li>
+</ul>
+<p>Os dados utilizados foram carregados via script, considerando todos os ativos da carteira em análise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datas de início e fim</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dataini <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-04-01"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>datafim <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-06-28"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Baixando os dados dos 5 ativos</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>lwsa3  <span class="ot">&lt;-</span> <span class="fu">get.hist.quote</span>(<span class="st">"lwsa3.sa"</span>,  <span class="at">quote =</span> <span class="st">"Close"</span>, <span class="at">start =</span> dataini, <span class="at">end =</span> datafim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>time series ends   2025-06-27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elet6 <span class="ot">&lt;-</span> <span class="fu">get.hist.quote</span>(<span class="st">"elet6.sa"</span>,  <span class="at">quote =</span> <span class="st">"Close"</span>, <span class="at">start =</span> dataini, <span class="at">end =</span> datafim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>time series ends   2025-06-27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>itsa4  <span class="ot">&lt;-</span> <span class="fu">get.hist.quote</span>(<span class="st">"itsa4.sa"</span>,  <span class="at">quote =</span> <span class="st">"Close"</span>, <span class="at">start =</span> dataini, <span class="at">end =</span> datafim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>time series ends   2025-06-27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rent3  <span class="ot">&lt;-</span> <span class="fu">get.hist.quote</span>(<span class="st">"rent3.sa"</span>,  <span class="at">quote =</span> <span class="st">"Close"</span>, <span class="at">start =</span> dataini, <span class="at">end =</span> datafim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>time series ends   2025-06-27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>brfs3  <span class="ot">&lt;-</span> <span class="fu">get.hist.quote</span>(<span class="st">"brfs3.sa"</span>,  <span class="at">quote =</span> <span class="st">"Close"</span>, <span class="at">start =</span> dataini, <span class="at">end =</span> datafim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>time series ends   2025-06-27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Removendo valores ausentes</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lwsa3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(lwsa3)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>elet6 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(elet6)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>itsa4 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(itsa4)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>rent3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(rent3)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>brfs3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(brfs3)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificando quantidade de observações e visualizando os dados</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(lwsa3); <span class="fu">plot</span>(lwsa3, <span class="at">main =</span> <span class="st">"Ativo - LWSA3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(elet6); <span class="fu">plot</span>(elet6, <span class="at">main =</span> <span class="st">"Ativo - ELET6"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(itsa4); <span class="fu">plot</span>(itsa4, <span class="at">main =</span> <span class="st">"Ativo - ITSA4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rent3); <span class="fu">plot</span>(rent3, <span class="at">main =</span> <span class="st">"Ativo - RET3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(brfs3); <span class="fu">plot</span>(brfs3, <span class="at">main =</span> <span class="st">"Ativo - BRFS3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-1-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="gráficos-seguindo-a-estratégia-buy-and-hold" class="level4">
+<h4 class="anchored" data-anchor-id="gráficos-seguindo-a-estratégia-buy-and-hold">Gráficos Seguindo a Estratégia Buy and Hold:</h4>
+<ul>
+<li><p>A ITSA4 valorizou&nbsp;<strong>35,68% (R$2,99)</strong>, com um volume impressionante de&nbsp;<strong>R$2,56 bilhões</strong>, o maior da lista. Esse movimento reflete uma&nbsp;<strong>alta sustentada</strong> , ideal para estratégias de buy and hold. A consistência no volume e na valorização indica confiança do mercado.</p>
+<p><img src="images/buy_itsa4.PNG" class="img-fluid" width="238"></p></li>
+<li><p>O ativo BRFS3 apresentou uma valorização de&nbsp;<strong>41,23% (R$6,82)</strong>&nbsp;no período analisado, com volume negociado de&nbsp;<strong>R$726,36 milhões</strong>. Esse desempenho, aliado ao volume significativo, indica uma&nbsp;<strong>tendência de alta</strong> , sugerindo forte interesse do mercado.</p>
+<p><img src="images/buy_brfs3.PNG" class="img-fluid" width="366"></p></li>
+<li><p>Com uma valorização de&nbsp;<strong>21,31% (R$8,52)</strong>&nbsp;e volume de&nbsp;<strong>R$114,55 milhões</strong>, o ELET6 teve o desempenho mais modesto entre os ativos analisados. O baixo volume relativo sugere menor participação do mercado, mas ainda assim manteve uma trajetória positiva. Pode ser um ativo mais estável.</p>
+<p><img src="images/buy_elet6-01.PNG" class="img-fluid"></p></li>
+<li><p>Com valorização de&nbsp;<strong>56,87% (R$14,55)</strong>&nbsp;e volume de&nbsp;<strong>R$806,45 milhões</strong>, a RENT3 mostrou um equilíbrio entre crescimento e liquidez. O bom desempenho , indica uma&nbsp;<strong>tendência de alta bem sustentada</strong>, com participação ativa do mercado.</p>
+<p><img src="images/buy_rent3-01.PNG" class="img-fluid"></p></li>
+</ul>
+<!-- -->
+<ul>
+<li><p>Destaque absoluto, a LWSA3 subiu&nbsp;<strong>85,54% (R$1,99)</strong>&nbsp;em&nbsp;<strong>119 dias</strong>, com volume de&nbsp;<strong>R$797,36 milhões</strong>. Esse crescimento explosivo, quase o dobro dos demais ativos, sugere um&nbsp;<strong>momento excepcional</strong>, possivelmente impulsionado por fatores setoriais ou notícias específicas. Quem comprou e segurou obteve retornos extraordinários, mas a alta volatilidade exige atenção.</p>
+<p><img src="images/buy_lwsa3.PNG" class="img-fluid"></p></li>
+</ul>
+</section>
+</section>
+<section id="estratégia-teórica-do-preço-máximo-e-mínimo" class="level2">
+<h2 class="anchored" data-anchor-id="estratégia-teórica-do-preço-máximo-e-mínimo">Estratégia Teórica do preço máximo e mínimo:</h2>
+<ul>
+<li>Ativo Brfs3: analisando a estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume em ambas conseguimo verificar que de fato há uma tedencia de alta que buscaremos na teoria de dow validar.</li>
+</ul>
+<p><img src="images/TEORICA_BRFS3-01.PNG" class="img-fluid" width="413"></p>
+<ul>
+<li><p>Ativo Elet6: analisando as estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume verificamos que menteve um volume relativo baixo indicando ser um ativo mais modesto</p>
+<p><img src="images/TEORICA_elet6-01.PNG" class="img-fluid" width="306"></p></li>
+<li><p>Ativo Itsa4: analisando as estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume verificamos que ouve o aumento volume nos mostra que os investidores tem espectativas nesse ativo, mas há um ponto a se observar a zona de resistência.</p>
+<p><img src="images/TEORICA_ITSA4-01.PNG" class="img-fluid"></p></li>
+<li><p>Ativo Rent3: analisando as estratégias de buy and hold , a teórica de máximos e mínimos juntamente com o volume verificamos que houve um diferença significativa no volume entre as duas estratégias ,mas devemos observar as possíveis áreas de resistências ao irmos para a teoria de dow</p>
+<p><img src="images/TEORICA_RENT3-02.PNG" class="img-fluid"></p></li>
+<li><p>Ativo Lwsa3: analisando as estraégias de buy and hold , a teorica de máximos e mínimos juntamento com o volume verificamos que mesmo com o volume alto precisamos de atenção para as regiões de resistências</p>
+<p><img src="images/TEORICA_LWSA3-01.PNG" class="img-fluid" width="306"></p></li>
+</ul>
+<!-- -->
+<ul>
+<li><p>Análise do ativo BRFS3:</p>
+<p><img src="images/dow2_brfs3.PNG" class="img-fluid" width="610"></p></li>
+<li><p>Análise do ativo ELET6 :</p>
+<p><img src="images/dow2_elet6.PNG" class="img-fluid" width="432"></p></li>
+<li><p>Análise do ativo ITSA6:</p>
+<p><img src="images/dow2_ITSA4.PNG" class="img-fluid" width="429"></p></li>
+<li><p>Análise do ativo RENT3:</p>
+<p><img src="images/dow2_RENT3.PNG" class="img-fluid" width="394"></p></li>
+<li><p>Análise do ativo LWSA3:</p>
+<p><img src="images/dow2_LSWA.PNG" class="img-fluid" width="370"></p></li>
+</ul>
+</section>
+<section id="indicadores-médias-moveis-e-desvio-padrão" class="level2">
+<h2 class="anchored" data-anchor-id="indicadores-médias-moveis-e-desvio-padrão">Indicadores Médias Moveis e Desvio padrão:</h2>
+<p>l</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Datas de início e fim</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>dataini <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-04-01"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>datafim <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-06-28"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetor com os tickers</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>tickers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lwsa3.sa"</span>, <span class="st">"elet6.sa"</span>, <span class="st">"itsa4.sa"</span>, <span class="st">"rent3.sa"</span>, <span class="st">"brfs3.sa"</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para armazenar os preços históricos</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>precos <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Baixando os dados e removendo NAs</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ticker <span class="cf">in</span> tickers) {</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  serie <span class="ot">&lt;-</span> <span class="fu">get.hist.quote</span>(ticker, <span class="at">quote =</span> <span class="st">"Close"</span>, <span class="at">start =</span> dataini, <span class="at">end =</span> datafim)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  serie <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(serie)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  precos[[ticker]] <span class="ot">&lt;-</span> serie</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>time series ends   2025-06-27
+time series ends   2025-06-27
+time series ends   2025-06-27
+time series ends   2025-06-27
+time series ends   2025-06-27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para calcular média e desvio padrão</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>estatisticas <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precos, <span class="cf">function</span>(x) {</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Media =</span> <span class="fu">mean</span>(x), <span class="at">DesvioPadrao =</span> <span class="fu">sd</span>(x))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo resultados</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>estatisticas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$lwsa3.sa
+       Media DesvioPadrao 
+   3.6225000    0.4607533 
+
+$elet6.sa
+       Media DesvioPadrao 
+   46.030667     1.262844 
+
+$itsa4.sa
+       Media DesvioPadrao 
+  10.5798333    0.5732172 
+
+$rent3.sa
+       Media DesvioPadrao 
+   41.416000     2.578418 
+
+$brfs3.sa
+       Media DesvioPadrao 
+  20.7445001    0.8725833 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>estat_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, estatisticas)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>estat_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Media DesvioPadrao
+lwsa3.sa  3.62250    0.4607533
+elet6.sa 46.03067    1.2628445
+itsa4.sa 10.57983    0.5732172
+rent3.sa 41.41600    2.5784177
+brfs3.sa 20.74450    0.8725833</code></pre>
+</div>
+</div>
+</section>
+<section id="calculando-o-coeficiente-de-variação-dos-ativos" class="level2">
+<h2 class="anchored" data-anchor-id="calculando-o-coeficiente-de-variação-dos-ativos">Calculando o Coeficiente de Variação dos Ativos :</h2>
+<ul>
+<li></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular coeficiente de variação para cada ativo</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>cv_estatisticas <span class="ot">&lt;-</span> <span class="fu">sapply</span>(estatisticas, <span class="cf">function</span>(x) {</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  (x[<span class="st">"DesvioPadrao"</span>] <span class="sc">/</span> x[<span class="st">"Media"</span>]) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir resultados</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>cv_estatisticas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lwsa3.sa.DesvioPadrao elet6.sa.DesvioPadrao itsa4.sa.DesvioPadrao 
+            12.719209              2.743485              5.418017 
+rent3.sa.DesvioPadrao brfs3.sa.DesvioPadrao 
+             6.225656              4.206335 </code></pre>
+</div>
+</div>
+</section>
+<section id="análise-dos-retornos" class="level1">
+<h1>Análise dos retornos</h1>
+<ul>
+<li></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular os retornos logarítmicos</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>retornos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precos, <span class="cf">function</span>(x) {</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  retorno <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">log</span>(x))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>(retorno)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizando os retornos de cada ativo</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>retornos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$lwsa3.sa
+                  Close
+2025-04-02  0.000000000
+2025-04-03  0.007352967
+2025-04-04 -0.056512247
+2025-04-07  0.015384905
+2025-04-08  0.026366941
+2025-04-09  0.054262807
+2025-04-10  0.044757940
+2025-04-11 -0.010152362
+2025-04-14  0.016863790
+2025-04-15  0.009983434
+2025-04-16  0.003305785
+2025-04-17  0.144200358
+2025-04-22  0.005698016
+2025-04-23  0.052570903
+2025-04-24  0.021334122
+2025-04-25  0.026043176
+2025-04-28 -0.033990230
+2025-04-29 -0.024227272
+2025-04-30 -0.016483940
+2025-05-02 -0.002773924
+2025-05-05 -0.025317784
+2025-05-06 -0.002853066
+2025-05-07 -0.014388724
+2025-05-08  0.034191332
+2025-05-09 -0.011267714
+2025-05-12 -0.055327082
+2025-05-13  0.074963038
+2025-05-14  0.002773924
+2025-05-15  0.013755428
+2025-05-16  0.008163303
+2025-05-19  0.000000000
+2025-05-20  0.039845871
+2025-05-21 -0.018397348
+2025-05-22  0.020998127
+2025-05-23 -0.007822718
+2025-05-26  0.007822718
+2025-05-27  0.000000000
+2025-05-28 -0.018349121
+2025-05-29 -0.018692115
+2025-05-30  0.013387068
+2025-06-02 -0.005333341
+2025-06-03  0.052095124
+2025-06-04  0.049515018
+2025-06-05 -0.054604082
+2025-06-06  0.002547770
+2025-06-09 -0.015384965
+2025-06-10  0.062598658
+2025-06-11  0.002424299
+2025-06-12  0.000000000
+2025-06-13 -0.012180465
+2025-06-16  0.028987510
+2025-06-17 -0.014388724
+2025-06-18  0.002412602
+2025-06-20 -0.004830923
+2025-06-23 -0.012180465
+2025-06-24  0.012180465
+2025-06-25 -0.019560506
+2025-06-26  0.024391429
+2025-06-27 -0.021925398
+
+$elet6.sa
+                   Close
+2025-04-02 -0.0013529060
+2025-04-03  0.0107720868
+2025-04-04 -0.0180184885
+2025-04-07 -0.0040993067
+2025-04-08  0.0009124297
+2025-04-09  0.0174035457
+2025-04-10  0.0111409349
+2025-04-11 -0.0064466359
+2025-04-14  0.0159295671
+2025-04-15 -0.0066065656
+2025-04-16 -0.0200854269
+2025-04-17  0.0275695068
+2025-04-22 -0.0048361802
+2025-04-23  0.0146562432
+2025-04-24  0.0286834770
+2025-04-25 -0.0042292465
+2025-04-28  0.0046511971
+2025-04-29  0.0050494884
+2025-04-30  0.0120985625
+2025-05-02 -0.0054053836
+2025-05-05 -0.0163938643
+2025-05-06  0.0012706773
+2025-05-07 -0.0059435279
+2025-05-08  0.0129034173
+2025-05-09  0.0069117044
+2025-05-12 -0.0081735630
+2025-05-13  0.0060841667
+2025-05-14 -0.0037720141
+2025-05-15 -0.0317825977
+2025-05-16  0.0045410196
+2025-05-19  0.0105162829
+2025-05-20 -0.0044934083
+2025-05-21 -0.0099139369
+2025-05-22 -0.0006499573
+2025-05-23  0.0084170001
+2025-05-26  0.0027900237
+2025-05-27  0.0110828171
+2025-05-28 -0.0106542665
+2025-05-29  0.0140397934
+2025-05-30 -0.0078464813
+2025-06-02 -0.0079086176
+2025-06-03  0.0040690161
+2025-06-04 -0.0062172119
+2025-06-05 -0.0075553186
+2025-06-06  0.0000000000
+2025-06-09 -0.0097986794
+2025-06-10  0.0136914244
+2025-06-11 -0.0051937289
+2025-06-12  0.0000000000
+2025-06-13 -0.0087165845
+2025-06-16  0.0162817017
+2025-06-17 -0.0060475084
+2025-06-18 -0.0230096539
+2025-06-20 -0.0226442171
+2025-06-23  0.0072300294
+2025-06-24  0.0009001107
+2025-06-25 -0.0135871310
+2025-06-26  0.0029596166
+2025-06-27 -0.0022758837
+
+$itsa4.sa
+                  Close
+2025-04-02  0.001058786
+2025-04-03  0.017829531
+2025-04-04 -0.029537984
+2025-04-07  0.006403380
+2025-04-08 -0.002129873
+2025-04-09  0.023183363
+2025-04-10 -0.005221964
+2025-04-11  0.010416701
+2025-04-14  0.013381581
+2025-04-15  0.013204876
+2025-04-16 -0.002020153
+2025-04-17  0.006048352
+2025-04-22  0.021869686
+2025-04-23  0.016577666
+2025-04-24  0.021053434
+2025-04-25  0.000946453
+2025-04-28  0.005660432
+2025-04-29  0.000000000
+2025-04-30  0.006563521
+2025-05-02 -0.016015423
+2025-05-05 -0.004759666
+2025-05-06 -0.002866675
+2025-05-07  0.008575579
+2025-05-08  0.005676498
+2025-05-09  0.041576408
+2025-05-12 -0.022884293
+2025-05-13  0.015618147
+2025-05-14  0.002730974
+2025-05-15  0.012646993
+2025-05-16  0.007155659
+2025-05-19  0.010638388
+2025-05-20  0.001762071
+2025-05-21 -0.015077898
+2025-05-22 -0.012590040
+2025-05-23  0.008111820
+2025-05-26  0.004478220
+2025-05-27  0.008896890
+2025-05-28 -0.010685755
+2025-05-29 -0.007187805
+2025-05-30 -0.001805096
+2025-06-02 -0.006343446
+2025-06-03 -0.001819878
+2025-06-04 -0.002735956
+2025-06-05 -0.011019385
+2025-06-06 -0.001848383
+2025-06-09 -0.002779130
+2025-06-10 -0.007448817
+2025-06-11  0.009302428
+2025-06-12  0.001850093
+2025-06-13 -0.010218357
+2025-06-16  0.012987227
+2025-06-17  0.004597639
+2025-06-18 -0.001836502
+2025-06-20 -0.006454581
+2025-06-23 -0.013973266
+2025-06-24  0.021346564
+2025-06-25 -0.013869901
+2025-06-26  0.000000000
+2025-06-27 -0.002797180
+
+$rent3.sa
+                   Close
+2025-04-02  0.0377403924
+2025-04-03  0.0214420181
+2025-04-04 -0.0310906744
+2025-04-07 -0.0080656007
+2025-04-08 -0.0030765122
+2025-04-09  0.0349560958
+2025-04-10  0.0115639393
+2025-04-11  0.0308040191
+2025-04-14  0.0177313818
+2025-04-15  0.0035597089
+2025-04-16 -0.0166350992
+2025-04-17  0.0379792481
+2025-04-22 -0.0277095425
+2025-04-23  0.0304387492
+2025-04-24  0.0302609200
+2025-04-25  0.0286716216
+2025-04-28  0.0058227716
+2025-04-29  0.0027829083
+2025-04-30 -0.0051080033
+2025-05-02  0.0032535328
+2025-05-05 -0.0009284379
+2025-05-06 -0.0249249055
+2025-05-07  0.0021405681
+2025-05-08  0.0421041684
+2025-05-09 -0.0683422881
+2025-05-12  0.0121213605
+2025-05-13  0.0057665146
+2025-05-14 -0.0498569198
+2025-05-15  0.0258528176
+2025-05-16  0.0263969837
+2025-05-19  0.0061948810
+2025-05-20 -0.0095465573
+2025-05-21 -0.0326619365
+2025-05-22  0.0049431825
+2025-05-23  0.0007393415
+2025-05-26  0.0063850493
+2025-05-27  0.0431205258
+2025-05-28  0.0155871054
+2025-05-29  0.0027662289
+2025-05-30 -0.0111112151
+2025-06-02  0.0081141580
+2025-06-03 -0.0043966851
+2025-06-04  0.0133612177
+2025-06-05  0.0113766868
+2025-06-06 -0.0090910064
+2025-06-09 -0.0032014523
+2025-06-10  0.0075300259
+2025-06-11  0.0002272604
+2025-06-12  0.0104002540
+2025-06-13 -0.0099458014
+2025-06-16  0.0217961937
+2025-06-17 -0.0087064553
+2025-06-18  0.0062584602
+2025-06-20 -0.0367639033
+2025-06-23 -0.0198442018
+2025-06-24  0.0256065783
+2025-06-25 -0.0083083053
+2025-06-26 -0.0755530720
+2025-06-27  0.0134063808
+
+$brfs3.sa
+                   Close
+2025-04-02 -0.0170259578
+2025-04-03 -0.0081136273
+2025-04-04 -0.0200572111
+2025-04-07 -0.0026007420
+2025-04-08 -0.0073184486
+2025-04-09  0.0757555444
+2025-04-10 -0.0102664840
+2025-04-11  0.0092933184
+2025-04-14 -0.0063492797
+2025-04-15  0.0126584080
+2025-04-16  0.0004836870
+2025-04-17  0.0224728231
+2025-04-22  0.0293522616
+2025-04-23 -0.0134044490
+2025-04-24  0.0239092059
+2025-04-25  0.0396399880
+2025-04-28 -0.0087719358
+2025-04-29  0.0022001873
+2025-04-30 -0.0022001873
+2025-05-02 -0.0106290495
+2025-05-05 -0.0464775474
+2025-05-06 -0.0521774305
+2025-05-07 -0.0044324205
+2025-05-08  0.0063960445
+2025-05-09 -0.0601342359
+2025-05-12  0.0262157559
+2025-05-13  0.0245565675
+2025-05-14 -0.0260797350
+2025-05-15  0.0466586122
+2025-05-16  0.0077294994
+2025-05-19 -0.0135661326
+2025-05-20  0.0240975516
+2025-05-21  0.0019029937
+2025-05-22  0.0178996372
+2025-05-23  0.0000000000
+2025-05-26 -0.0051486475
+2025-05-27 -0.0358290064
+2025-05-28 -0.0083028600
+2025-05-29  0.0083028600
+2025-05-30 -0.0127265661
+2025-06-02  0.0098040377
+2025-06-03  0.0000000000
+2025-06-04  0.0000000000
+2025-06-05  0.0000000000
+2025-06-06  0.0009751565
+2025-06-09  0.0231223951
+2025-06-10  0.0239955162
+2025-06-11 -0.0069979113
+2025-06-12 -0.0318695251
+2025-06-13  0.0148719202
+2025-06-16 -0.0240975516
+2025-06-17 -0.0004879351
+2025-06-18  0.0207686918
+2025-06-20 -0.0062334969
+2025-06-23  0.0456012866
+2025-06-24 -0.0475271858
+2025-06-25 -0.0363140866
+2025-06-26  0.0044876740
+2025-06-27 -0.0100001215</code></pre>
+</div>
+</div>
+</section>
+<section id="análise-média-desvio-padrão-dos-retornos-e-cálculo-do-risco-cv-dos-retornos" class="level1">
+<h1>Análise Média ,Desvio padrão dos Retornos e Cálculo do risco (CV) dos retornos</h1>
+<ul>
+<li></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo das estatísticas dos retornos</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>estat_retornos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(x) {</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  coefvar <span class="ot">&lt;-</span> (desvio <span class="sc">/</span> (media <span class="sc">*</span><span class="dv">100</span>)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Media =</span> media, <span class="at">DesvioPadrao =</span> desvio, <span class="at">CoefVar =</span> coefvar)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>estat_retornos_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, estat_retornos)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(estat_retornos_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(retornos))</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficos de barras</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(estat_retornos_df[, <span class="st">"Media"</span>],</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Média dos Retornos por Ativo"</span>,</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"skyblue"</span>, <span class="at">ylab =</span> <span class="st">"Média"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(estat_retornos_df[, <span class="st">"DesvioPadrao"</span>],</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Desvio Padrão dos Retornos por Ativo"</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"tomato"</span>, <span class="at">ylab =</span> <span class="st">"Desvio Padrão"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(estat_retornos_df[, <span class="st">"CoefVar"</span>],</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Coeficiente de Variação (%) por Ativo"</span>,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"gold"</span>, <span class="at">ylab =</span> <span class="st">"CV (%)"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="distribuição-dos-preços-e-retornos" class="level1">
+<h1>Distribuição dos preços e retornos</h1>
+<section id="histogramas" class="level2">
+<h2 class="anchored" data-anchor-id="histogramas">Histogramas</h2>
+<ul>
+<li></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tickers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lwsa3.sa"</span>, <span class="st">"elet6.sa"</span>, <span class="st">"itsa4.sa"</span>, <span class="st">"rent3.sa"</span>, <span class="st">"brfs3.sa"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ticker <span class="cf">in</span> tickers) {</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Layout 2x2</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(precos[[ticker]], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Série de Preços -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">ylab =</span> <span class="st">"Preço"</span>, <span class="at">xlab =</span> <span class="st">"Data"</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(precos[[ticker]], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma dos Preços -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Preço"</span>)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(retornos[[ticker]], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Retornos -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">ylab =</span> <span class="st">"Retorno"</span>, <span class="at">xlab =</span> <span class="st">"Data"</span>)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(retornos[[ticker]], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"lightcoral"</span>,</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma dos Retornos -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Retorno"</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="medida-de-volatilidade-anualizada-amostra" class="level1">
+<h1>Medida de volatilidade anualizada (amostra)</h1>
+<ul>
+<li></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>estat_retornos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(x) {</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  coefvar <span class="ot">&lt;-</span> desvio <span class="sc">/</span> media <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  volatil <span class="ot">&lt;-</span> desvio <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">252</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Media =</span> media, <span class="at">DesvioPadrao =</span> desvio, <span class="at">CoefVar =</span> coefvar, <span class="at">VolatilidadeAnual =</span> volatil)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar como data frame</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>estat_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, estat_retornos)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(estat_df, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Media DesvioPadrao     CoefVar VolatilidadeAnual
+lwsa3.sa  0.0069       0.0331    482.4629           52.4741
+elet6.sa -0.0002       0.0120  -6363.8925           19.0103
+itsa4.sa  0.0021       0.0123    574.7933           19.5207
+rent3.sa  0.0024       0.0245   1000.2478           38.8442
+brfs3.sa -0.0002       0.0248 -12196.9777           39.3416</code></pre>
+</div>
+</div>
+</section>
+<section id="análise-da-distribuição-normal-dos-ativos" class="level1">
+<h1>Análise da Distribuição Normal Dos Ativos</h1>
+<ul>
+<li>Nesse momento</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout para mostrar 4 gráficos por ativo</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ticker <span class="cf">in</span> tickers) {</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula média e desvio padrão dos retornos do ativo</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(retornos[[ticker]])</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(retornos[[ticker]])</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 1 DP</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> desvio, media <span class="sc">+</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x1, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x1, y1, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 1 DP"</span>))</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 2 DP</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x2, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x2, y2, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 2 DP"</span>))</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 3 DP</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>  x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>  y3 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x3, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x3, y3, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 3 DP"</span>))</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo mais amplo (±2.5σ)</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>  x4 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="fl">2.5</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="fl">2.5</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>  y4 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x4, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x4, y4, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo mais amplo"</span>))</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="probabilidades-dentro-dos-intervalos-da-média" class="level2">
+<h2 class="anchored" data-anchor-id="probabilidades-dentro-dos-intervalos-da-média">Probabilidades dentro dos intervalos da média:</h2>
+<ul>
+<li></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para guardar os resultados</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>intervalos_dp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(r) {</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(r)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(r)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Probabilidades acumuladas para cada intervalo</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  dp1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> desvio, media, desvio)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  dp2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media, desvio)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  dp3 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media, desvio)</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Intervalo_1DP =</span> dp1,</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Intervalo_2DP =</span> dp2,</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Intervalo_3DP =</span> dp3)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>intervalos_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, intervalos_dp)</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(intervalos_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(retornos))</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir resultados em porcentagem</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(intervalos_df <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Intervalo_1DP Intervalo_2DP Intervalo_3DP
+LWSA3.SA         68.27         95.45         99.73
+ELET6.SA         68.27         95.45         99.73
+ITSA4.SA         68.27         95.45         99.73
+RENT3.SA         68.27         95.45         99.73
+BRFS3.SA         68.27         95.45         99.73</code></pre>
+</div>
+</div>
+</section>
+<section id="probabilidade-de-preços-abaixo-de-um-valor" class="level2">
+<h2 class="anchored" data-anchor-id="probabilidade-de-preços-abaixo-de-um-valor">Probabilidade de preços abaixo de um valor</h2>
+<ul>
+<li><p>safd</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores a testar</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">34.875</span>, <span class="dv">38</span>, <span class="dv">32</span>, <span class="dv">33</span>, <span class="fl">37.13255</span>, <span class="dv">39</span>, <span class="dv">41</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para guardar as probabilidades por ativo</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>probabilidades <span class="ot">&lt;-</span> <span class="fu">lapply</span>(tickers, <span class="cf">function</span>(ticker) {</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(precos[[ticker]])</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(precos[[ticker]])</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula pnorm para cada valor</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  probs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(valores, <span class="cf">function</span>(v) <span class="fu">pnorm</span>(v, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(probs)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>prob_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, probabilidades)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(prob_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(tickers)</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(prob_df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"P(X ≤ "</span>, valores, <span class="st">")"</span>)</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir com duas casas decimais</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_df, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         P(X ≤ 34.875) P(X ≤ 38) P(X ≤ 32) P(X ≤ 33) P(X ≤ 37.13255) P(X ≤ 39)
+LWSA3.SA        1.0000    1.0000     1e+00     1e+00          1.0000    1.0000
+ELET6.SA        0.0000    0.0000     0e+00     0e+00          0.0000    0.0000
+ITSA4.SA        1.0000    1.0000     1e+00     1e+00          1.0000    1.0000
+RENT3.SA        0.0056    0.0926     1e-04     5e-04          0.0483    0.1744
+BRFS3.SA        1.0000    1.0000     1e+00     1e+00          1.0000    1.0000
+         P(X ≤ 41)
+LWSA3.SA    1.0000
+ELET6.SA    0.0000
+ITSA4.SA    1.0000
+RENT3.SA    0.4359
+BRFS3.SA    1.0000</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="cálculo-de-quantis-para-níveis-de-confiança" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-de-quantis-para-níveis-de-confiança">Cálculo de quantis para níveis de confiança</h2>
+<ul>
+<li>adfad</li>
+</ul>
+<pre><code>::: {.cell}
+
+```{.r .cell-code}
+# Percentis desejados
+percentis &lt;- c(0.90, 0.95, 0.975, 0.99)
+
+# Lista com os quantis por ativo
+quantis_ativos &lt;- lapply(tickers, function(ticker) {
+  media &lt;- mean(precos[[ticker]])
+  desvio &lt;- sd(precos[[ticker]])
+  
+  # Calcula qnorm para os percentis
+  qnts &lt;- sapply(percentis, function(p) qnorm(p, mean = media, sd = desvio))
+  return(qnts)
+})
+
+# Transformar em data frame
+quantis_df &lt;- do.call(rbind, quantis_ativos)
+rownames(quantis_df) &lt;- toupper(tickers)
+colnames(quantis_df) &lt;- paste0("Quantil_", percentis * 100, "%")
+
+# Exibir resultado arredondado
+round(quantis_df, 2)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+         Quantil_90% Quantil_95% Quantil_97.5% Quantil_99%
+LWSA3.SA        4.21        4.38          4.53        4.69
+ELET6.SA       47.65       48.11         48.51       48.97
+ITSA4.SA       11.31       11.52         11.70       11.91
+RENT3.SA       44.72       45.66         46.47       47.41
+BRFS3.SA       21.86       22.18         22.45       22.77
+```
+
+
+:::
+:::</code></pre>
+</section>
+<section id="cálculo-da-densidade-para-valores-específicos" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-da-densidade-para-valores-específicos">Cálculo da densidade para valores específicos:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcula densidades</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>densidades <span class="ot">&lt;-</span> <span class="fu">lapply</span>(tickers, <span class="cf">function</span>(ticker) {</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(precos[[ticker]])</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(precos[[ticker]])</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  dens <span class="ot">&lt;-</span> <span class="fu">sapply</span>(valores, <span class="cf">function</span>(v) <span class="fu">dnorm</span>(v, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio))</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dens)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>dens_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, densidades)</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(dens_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(tickers)</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dens_df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"f("</span>, valores, <span class="st">")"</span>)</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir com 6 casas decimais</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(dens_df, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         f(34.875)    f(38)    f(32)    f(33) f(37.13255)    f(39)    f(41)
+LWSA3.SA  0.000000 0.000000 0.000000 0.000000    0.000000 0.000000 0.000000
+ELET6.SA  0.000000 0.000000 0.000000 0.000000    0.000000 0.000000 0.000113
+ITSA4.SA  0.000000 0.000000 0.000000 0.000000    0.000000 0.000000 0.000000
+RENT3.SA  0.006196 0.064331 0.000197 0.000752    0.038929 0.099748 0.152723
+BRFS3.SA  0.000000 0.000000 0.000000 0.000000    0.000000 0.000000 0.000000</code></pre>
+</div>
+</div>
+</section>
+<section id="gráfico-de-risco" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-de-risco">Gráfico de risco</h2>
+<ul>
+<li><p>dfd</p>
+<p><img src="images/grafico_01-01.PNG" class="img-fluid"></p></li>
+</ul>
+</section>
+<section id="gráfico" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico">Gráfico</h2>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

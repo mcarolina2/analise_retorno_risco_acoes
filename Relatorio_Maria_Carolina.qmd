@@ -1,0 +1,426 @@
+---
+title: "Relatorio_Maria_Carolina"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+## Análise de Risco e Retorno :
+
+Nesta etapa, foi realizada uma análise dos **preços de fechamento dos ativos** no período de **01/04/2025 a 27/06/2025**, com o objetivo de compreender a dinâmica histórica e apoiar decisões futuras de investimento. A partir da estratégia **buy and hold** e do referencial **teórico de benchmark**, foram identificados:
+
+-   O **preço inicial** e **preço final** da série
+
+-   O **menor** e o **maior valor** registrado no período,
+
+-   E a **variação percentual teórica** entre esses pontos, representando o potencial de crescimento ou retração do ativo.
+
+-   Esses indicadores permitem observar a trajetória dos ativos e avaliar sua performance em termos de risco e retorno. O intuito é entender o comportamento passado para **operar de forma mais estratégica no futuro**.
+
+Os dados utilizados foram carregados via script, considerando todos os ativos da carteira em análise.
+
+```{r}
+library(tseries)
+
+# Datas de início e fim
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-28")
+
+# Baixando os dados dos 5 ativos
+lwsa3  <- get.hist.quote("lwsa3.sa",  quote = "Close", start = dataini, end = datafim)
+elet6 <- get.hist.quote("elet6.sa",  quote = "Close", start = dataini, end = datafim)
+itsa4  <- get.hist.quote("itsa4.sa",  quote = "Close", start = dataini, end = datafim)
+rent3  <- get.hist.quote("rent3.sa",  quote = "Close", start = dataini, end = datafim)
+brfs3  <- get.hist.quote("brfs3.sa",  quote = "Close", start = dataini, end = datafim)
+
+# Removendo valores ausentes
+lwsa3 <- na.omit(lwsa3)
+elet6 <- na.omit(elet6)
+itsa4 <- na.omit(itsa4)
+rent3 <- na.omit(rent3)
+brfs3 <- na.omit(brfs3)
+
+# Verificando quantidade de observações e visualizando os dados
+length(lwsa3); plot(lwsa3, main = "Ativo - LWSA3")
+length(elet6); plot(elet6, main = "Ativo - ELET6")
+length(itsa4); plot(itsa4, main = "Ativo - ITSA4")
+length(rent3); plot(rent3, main = "Ativo - RET3")
+length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
+
+```
+
+#### Gráficos Seguindo a Estratégia Buy and Hold:
+
+-   A ITSA4 valorizou **35,68% (R\$2,99)**, com um volume impressionante de **R\$2,56 bilhões**, o maior da lista. Esse movimento reflete uma **alta sustentada** , ideal para estratégias de buy and hold. A consistência no volume e na valorização indica confiança do mercado.
+
+    ![](images/buy_itsa4.PNG){width="238"}
+
+-   O ativo BRFS3 apresentou uma valorização de **41,23% (R\$6,82)** no período analisado, com volume negociado de **R\$726,36 milhões**. Esse desempenho, aliado ao volume significativo, indica uma **tendência de alta** , sugerindo forte interesse do mercado.
+
+    ![](images/buy_brfs3.PNG){width="366"}
+
+-   Com uma valorização de **21,31% (R\$8,52)** e volume de **R\$114,55 milhões**, o ELET6 teve o desempenho mais modesto entre os ativos analisados. O baixo volume relativo sugere menor participação do mercado, mas ainda assim manteve uma trajetória positiva. Pode ser um ativo mais estável.
+
+    ![](images/buy_elet6-01.PNG)
+
+-   Com valorização de **56,87% (R\$14,55)** e volume de **R\$806,45 milhões**, a RENT3 mostrou um equilíbrio entre crescimento e liquidez. O bom desempenho , indica uma **tendência de alta bem sustentada**, com participação ativa do mercado.
+
+    ![](images/buy_rent3-01.PNG)
+
+<!-- -->
+
+-   Destaque absoluto, a LWSA3 subiu **85,54% (R\$1,99)** em **119 dias**, com volume de **R\$797,36 milhões**. Esse crescimento explosivo, quase o dobro dos demais ativos, sugere um **momento excepcional**, possivelmente impulsionado por fatores setoriais ou notícias específicas. Quem comprou e segurou obteve retornos extraordinários, mas a alta volatilidade exige atenção.
+
+    ![](images/buy_lwsa3.PNG)
+
+## Estratégia Teórica do preço máximo e mínimo:
+
+-   Ativo Brfs3: analisando a estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume em ambas conseguimo verificar que de fato há uma tedencia de alta que buscaremos na teoria de dow validar.
+
+![](images/TEORICA_BRFS3-01.PNG){width="413"}
+
+-   Ativo Elet6: analisando as estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume verificamos que menteve um volume relativo baixo indicando ser um ativo mais modesto
+
+    ![](images/TEORICA_elet6-01.PNG){width="306"}
+
+-   Ativo Itsa4: analisando as estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume verificamos que ouve o aumento volume nos mostra que os investidores tem espectativas nesse ativo, mas há um ponto a se observar a zona de resistência.
+
+    ![](images/TEORICA_ITSA4-01.PNG)
+
+-   Ativo Rent3: analisando as estratégias de buy and hold , a teórica de máximos e mínimos juntamente com o volume verificamos que houve um diferença significativa no volume entre as duas estratégias ,mas devemos observar as possíveis áreas de resistências ao irmos para a teoria de dow
+
+    ![](images/TEORICA_RENT3-02.PNG)
+
+-   Ativo Lwsa3: analisando as estraégias de buy and hold , a teorica de máximos e mínimos juntamento com o volume verificamos que mesmo com o volume alto precisamos de atenção para as regiões de resistências
+
+    ![](images/TEORICA_LWSA3-01.PNG){width="306"}
+
+<!-- -->
+
+-   Análise do ativo BRFS3:
+
+    ![](images/dow2_brfs3.PNG){width="610"}
+
+-   Análise do ativo ELET6 :
+
+    ![](images/dow2_elet6.PNG){width="432"}
+
+-   Análise do ativo ITSA6:
+
+    ![](images/dow2_ITSA4.PNG){width="429"}
+
+-   Análise do ativo RENT3:
+
+    ![](images/dow2_RENT3.PNG){width="394"}
+
+-   Análise do ativo LWSA3:
+
+    ![](images/dow2_LSWA.PNG){width="370"}
+
+## Indicadores Médias Moveis e Desvio padrão: 
+
+l
+
+```{r}
+library(tseries)
+
+
+# Datas de início e fim
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-28")
+
+# Vetor com os tickers
+tickers <- c("lwsa3.sa", "elet6.sa", "itsa4.sa", "rent3.sa", "brfs3.sa")
+
+# Lista para armazenar os preços históricos
+precos <- list()
+
+# Baixando os dados e removendo NAs
+for (ticker in tickers) {
+  serie <- get.hist.quote(ticker, quote = "Close", start = dataini, end = datafim)
+  serie <- na.omit(serie)
+  precos[[ticker]] <- serie
+}
+
+# Função para calcular média e desvio padrão
+estatisticas <- lapply(precos, function(x) {
+  c(Media = mean(x), DesvioPadrao = sd(x))
+})
+
+# Exibindo resultados
+estatisticas
+estat_df <- do.call(rbind, estatisticas)
+estat_df
+```
+
+## Calculando o Coeficiente de Variação dos Ativos : 
+
+-   
+
+```{r}
+# Calcular coeficiente de variação para cada ativo
+cv_estatisticas <- sapply(estatisticas, function(x) {
+  (x["DesvioPadrao"] / x["Media"]) * 100
+})
+
+# Exibir resultados
+cv_estatisticas
+
+```
+
+# Análise dos retornos
+
+-   
+
+```{r}
+# Calcular os retornos logarítmicos
+retornos <- lapply(precos, function(x) {
+  retorno <- diff(log(x))
+  na.omit(retorno)
+})
+
+# Visualizando os retornos de cada ativo
+retornos
+```
+
+# Análise Média ,Desvio padrão dos Retornos e Cálculo do risco (CV) dos retornos
+
+-   
+
+```{r}
+# Cálculo das estatísticas dos retornos
+estat_retornos <- lapply(retornos, function(x) {
+  media <- mean(x)
+  desvio <- sd(x)
+  coefvar <- (desvio / (media *100)) * 100
+  c(Media = media, DesvioPadrao = desvio, CoefVar = coefvar)
+})
+
+# Transformar em data frame
+estat_retornos_df <- do.call(rbind, estat_retornos)
+rownames(estat_retornos_df) <- toupper(names(retornos))
+
+# Gráficos de barras
+barplot(estat_retornos_df[, "Media"],
+        main = "Média dos Retornos por Ativo",
+        col = "skyblue", ylab = "Média", las = 2)
+
+barplot(estat_retornos_df[, "DesvioPadrao"],
+        main = "Desvio Padrão dos Retornos por Ativo",
+        col = "tomato", ylab = "Desvio Padrão", las = 2)
+
+barplot(estat_retornos_df[, "CoefVar"],
+        main = "Coeficiente de Variação (%) por Ativo",
+        col = "gold", ylab = "CV (%)", las = 2)
+
+
+```
+
+# Distribuição dos preços e retornos
+
+## Histogramas
+
+-   
+
+```{r}
+tickers <- c("lwsa3.sa", "elet6.sa", "itsa4.sa", "rent3.sa", "brfs3.sa")
+for (ticker in tickers) {
+  
+  # Layout 2x2
+  par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+
+  plot(precos[[ticker]], main = paste("Série de Preços -", toupper(ticker)),
+       col = "darkgreen", ylab = "Preço", xlab = "Data")
+
+  hist(precos[[ticker]], breaks = 30, col = "skyblue",
+       main = paste("Histograma dos Preços -", toupper(ticker)),
+       xlab = "Preço")
+
+  plot(retornos[[ticker]], main = paste("Retornos -", toupper(ticker)),
+       col = "purple", ylab = "Retorno", xlab = "Data")
+
+  hist(retornos[[ticker]], breaks = 30, col = "lightcoral",
+       main = paste("Histograma dos Retornos -", toupper(ticker)),
+       xlab = "Retorno")
+}
+```
+
+# Medida de volatilidade anualizada (amostra)
+
+-   
+
+```{r}
+estat_retornos <- lapply(retornos, function(x) {
+  media <- mean(x)
+  desvio <- sd(x)
+  coefvar <- desvio / media * 100
+  volatil <- desvio * sqrt(252) * 100
+  c(Media = media, DesvioPadrao = desvio, CoefVar = coefvar, VolatilidadeAnual = volatil)
+})
+
+# Organizar como data frame
+estat_df <- do.call(rbind, estat_retornos)
+round(estat_df, 4)
+```
+
+# Análise da Distribuição Normal Dos Ativos
+
+-   Nesse momento
+
+```{r}
+# Layout para mostrar 4 gráficos por ativo
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+
+for (ticker in tickers) {
+  # Calcula média e desvio padrão dos retornos do ativo
+  media <- mean(retornos[[ticker]])
+  desvio <- sd(retornos[[ticker]])
+
+  # Intervalo de 1 DP
+  x1 <- seq(media - desvio, media + desvio, length = 60)
+  y1 <- dnorm(x1, mean = media, sd = desvio)
+  plot(x1, y1, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo de 1 DP"))
+
+  # Intervalo de 2 DP
+  x2 <- seq(media - 2 * desvio, media + 2 * desvio, length = 60)
+  y2 <- dnorm(x2, mean = media, sd = desvio)
+  plot(x2, y2, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo de 2 DP"))
+
+  # Intervalo de 3 DP
+  x3 <- seq(media - 3 * desvio, media + 3 * desvio, length = 60)
+  y3 <- dnorm(x3, mean = media, sd = desvio)
+  plot(x3, y3, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo de 3 DP"))
+
+  # Intervalo mais amplo (±2.5σ)
+  x4 <- seq(media - 2.5 * desvio, media + 2.5 * desvio, length = 60)
+  y4 <- dnorm(x4, mean = media, sd = desvio)
+  plot(x4, y4, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo mais amplo"))
+}
+
+```
+
+## Probabilidades dentro dos intervalos da média:
+
+-   
+
+```{r}
+# Lista para guardar os resultados
+intervalos_dp <- lapply(retornos, function(r) {
+  media <- mean(r)
+  desvio <- sd(r)
+
+  # Probabilidades acumuladas para cada intervalo
+  dp1 <- pnorm(media + desvio, media, desvio) - pnorm(media - desvio, media, desvio)
+  dp2 <- pnorm(media + 2 * desvio, media, desvio) - pnorm(media - 2 * desvio, media, desvio)
+  dp3 <- pnorm(media + 3 * desvio, media, desvio) - pnorm(media - 3 * desvio, media, desvio)
+
+  c(Intervalo_1DP = dp1,
+    Intervalo_2DP = dp2,
+    Intervalo_3DP = dp3)
+})
+
+# Transformar em data frame
+intervalos_df <- do.call(rbind, intervalos_dp)
+rownames(intervalos_df) <- toupper(names(retornos))
+
+# Exibir resultados em porcentagem
+round(intervalos_df * 100, 2)
+
+
+
+```
+
+## Probabilidade de preços abaixo de um valor
+
+-   safd
+
+    ```{r}
+    # Valores a testar
+    valores <- c(34.875, 38, 32, 33, 37.13255, 39, 41)
+
+    # Lista para guardar as probabilidades por ativo
+    probabilidades <- lapply(tickers, function(ticker) {
+      media <- mean(precos[[ticker]])
+      desvio <- sd(precos[[ticker]])
+
+      # Calcula pnorm para cada valor
+      probs <- sapply(valores, function(v) pnorm(v, mean = media, sd = desvio, lower.tail = TRUE))
+
+      return(probs)
+    })
+
+    # Transformar em data frame
+    prob_df <- do.call(rbind, probabilidades)
+    rownames(prob_df) <- toupper(tickers)
+    colnames(prob_df) <- paste0("P(X ≤ ", valores, ")")
+
+    # Exibir com duas casas decimais
+    round(prob_df, 4)
+
+
+    ```
+
+## Cálculo de quantis para níveis de confiança
+
+-    adfad
+
+    ```{r}
+    # Percentis desejados
+    percentis <- c(0.90, 0.95, 0.975, 0.99)
+
+    # Lista com os quantis por ativo
+    quantis_ativos <- lapply(tickers, function(ticker) {
+      media <- mean(precos[[ticker]])
+      desvio <- sd(precos[[ticker]])
+      
+      # Calcula qnorm para os percentis
+      qnts <- sapply(percentis, function(p) qnorm(p, mean = media, sd = desvio))
+      return(qnts)
+    })
+
+    # Transformar em data frame
+    quantis_df <- do.call(rbind, quantis_ativos)
+    rownames(quantis_df) <- toupper(tickers)
+    colnames(quantis_df) <- paste0("Quantil_", percentis * 100, "%")
+
+    # Exibir resultado arredondado
+    round(quantis_df, 2)
+
+
+    ```
+
+## Cálculo da densidade para valores específicos: 
+
+```{r}
+# Calcula densidades
+densidades <- lapply(tickers, function(ticker) {
+  media <- mean(precos[[ticker]])
+  desvio <- sd(precos[[ticker]])
+  
+  dens <- sapply(valores, function(v) dnorm(v, mean = media, sd = desvio))
+  return(dens)
+})
+
+# Transformar em data frame
+dens_df <- do.call(rbind, densidades)
+rownames(dens_df) <- toupper(tickers)
+colnames(dens_df) <- paste0("f(", valores, ")")
+
+# Exibir com 6 casas decimais
+round(dens_df, 6)
+
+
+```
+
+## Gráfico de risco
+
+-   dfd
+
+    ![](images/grafico_01-01.PNG)
+
+## Gráfico 
