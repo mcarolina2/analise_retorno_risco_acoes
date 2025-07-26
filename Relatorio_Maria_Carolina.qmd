@@ -76,9 +76,9 @@ length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
 
 ## Estratégia Teórica do preço máximo e mínimo:
 
--   Ativo Brfs3: analisando a estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume em ambas conseguimo verificar que de fato há uma tedencia de alta que buscaremos na teoria de dow validar.
+-   Ativo Brfs3: analisando a estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume em ambas conseguimo verificar que de fato há uma tedencia de alta no volume e que nos lembra a possibilidade de que o preço continuara caindo buscaremos na teoria de dow validar isso.
 
-![](images/TEORICA_BRFS3-01.PNG){width="413"}
+![](images/TEORICA_BRFS3-01.PNG){width="411"}
 
 -   Ativo Elet6: analisando as estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume verificamos que menteve um volume relativo baixo indicando ser um ativo mais modesto
 
@@ -100,7 +100,7 @@ length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
 
 -   Análise do ativo BRFS3:
 
-    ![](images/dow2_brfs3.PNG){width="610"}
+    ![](images/dow2_brfs3-02.PNG){width="569"}
 
 -   Análise do ativo ELET6 :
 
@@ -120,7 +120,7 @@ length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
 
 ## Indicadores Médias Moveis e Desvio padrão: 
 
-l
+-   Com a média
 
 ```{r}
 library(tseries)
@@ -424,3 +424,13 @@ round(dens_df, 6)
     ![](images/grafico_01-01.PNG)
 
 ## Gráfico 
+
+![](images/grafico_02.PNG)
+
+## Gráfico
+
+![](images/grafico_coefva.PNG){width="587"}
+
+## Gráfico
+
+![](images/grafico_risco.PNG){width="606"}
