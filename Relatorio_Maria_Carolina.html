@@ -104,12 +104,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="análise-de-risco-e-retorno" class="level2">
 <h2 class="anchored" data-anchor-id="análise-de-risco-e-retorno">Análise de Risco e Retorno :</h2>
-<p>Nesta etapa, foi realizada uma análise dos <strong>preços de fechamento dos ativos</strong> no período de <strong>01/04/2025 a 27/06/2025</strong>, com o objetivo de compreender a dinâmica histórica e apoiar decisões futuras de investimento. A partir da estratégia <strong>buy and hold</strong> e do referencial <strong>teórico de benchmark</strong>, foram identificados:</p>
+<p>Nesta etapa, foi realizada uma análise dos preços de fechamento dos ativos no período de 01/04/2025 a 27/06/2025, com o objetivo de compreender a dinâmica histórica e apoiar decisões futuras de investimento. A partir da estratégia buy and hold e do referencial teórico de benchmark, foram identificados:</p>
 <ul>
-<li><p>O <strong>preço inicial</strong> e <strong>preço final</strong> da série</p></li>
-<li><p>O <strong>menor</strong> e o <strong>maior valor</strong> registrado no período,</p></li>
-<li><p>E a <strong>variação percentual teórica</strong> entre esses pontos, representando o potencial de crescimento ou retração do ativo.</p></li>
-<li><p>Esses indicadores permitem observar a trajetória dos ativos e avaliar sua performance em termos de risco e retorno. O intuito é entender o comportamento passado para <strong>operar de forma mais estratégica no futuro</strong>.</p></li>
+<li><p>O preço inicial e preço final da série</p></li>
+<li><p>O menor e o maior valor registrado no período,</p></li>
+<li><p>E a variação percentual teórica entre esses pontos, representando o potencial de crescimento ou retração do ativo.</p></li>
+<li><p>Esses indicadores permitem observar a trajetória dos ativos e avaliar sua performance em termos de risco e retorno. O intuito é entender o comportamento passado para operar de forma mais estratégica no futuro.</p></li>
 </ul>
 <p>Os dados utilizados foram carregados via script, considerando todos os ativos da carteira em análise.</p>
 <div class="cell">
@@ -268,11 +268,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Com a análise dos indicadores técnicos , a média e o desvio padrão buscamos entender as sinalizações e antecipações de uma tendências ou a reversão dela
 <ul>
-<li>No ativo BRFS3:</li>
-<li>No ativo ELET6:</li>
-<li>No ativo LWSA3:</li>
-<li>No ativo RENT3:</li>
-<li>No ativo ITSA4:</li>
+<li><p>No ativo BRFS3: nesse ativo podemos verificar que a média acompanhou o preço do ativo ,confirmando a nossa hipótese da teoria de dow deu que vem uma tendência de alta<img src="images/média-brfs3.PNG" class="img-fluid"></p></li>
+<li><p>No ativo ELET6: nesse ativo vemos que a média acompanhou o preço mas de forma mais calma pois em momentos onde vimos a alta do preço vimos a média se aproximar mas de foma mais leve.</p>
+<p><img src="images/média-rlrt6.PNG" class="img-fluid"></p></li>
+<li><p>No ativo LWSA3:Podemos observar que em algums momentos que a média acompanhou levemente o preço ,mas na maior parte do gráfico ela se manteve estável.</p>
+<p><img src="images/média_lwsa3.PNG" class="img-fluid"></p></li>
+<li><p>No ativo RENT3: vemos que a média acompanhou bastante o preço e isso confirma a nossa hipótese da nossa tendência de alta</p>
+<p><img src="images/média-rent3.PNG" class="img-fluid"></p></li>
+<li><p>No ativo ITSA4: podemos notar que a média acompanha o preço , mas nos momentos em que houve uma queda ela caiu ,mas de fomra mais leve</p>
+<p><img src="images/média-itsa4.PNG" class="img-fluid"></p></li>
 </ul></li>
 </ul>
 <div class="cell">
@@ -345,14 +349,7 @@ brfs3.sa 20.74450    0.8725833</code></pre>
 <section id="calculando-o-coeficiente-de-variação-dos-ativos" class="level2">
 <h2 class="anchored" data-anchor-id="calculando-o-coeficiente-de-variação-dos-ativos">Calculando o Coeficiente de Variação dos Ativos :</h2>
 <ul>
-<li><p>dnwoibw</p>
-<ul>
-<li><p>No ativo BRFS3:</p></li>
-<li><p>No ativo ELET6:</p></li>
-<li><p>No ativo LWSA3:</p></li>
-<li><p>No ativo RENT3:</p></li>
-<li><p>No ativo ITSA4:</p></li>
-</ul></li>
+<li>dnwoibw</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular coeficiente de variação para cada ativo</span></span>
@@ -369,20 +366,14 @@ rent3.sa.DesvioPadrao brfs3.sa.DesvioPadrao
              6.225656              4.206335 </code></pre>
 </div>
 </div>
+<p><img src="images/clipboard-3974612332.png" class="img-fluid"></p>
+<ul>
+<li></li>
+</ul>
 </section>
 </section>
 <section id="análise-dos-retornos" class="level1">
 <h1>Análise dos retornos</h1>
-<ul>
-<li><p>daaadfd</p>
-<ul>
-<li><p>No ativo BRFS3:</p></li>
-<li><p>No ativo ELET6:</p></li>
-<li><p>No ativo LWSA3:</p></li>
-<li><p>No ativo RENT3:</p></li>
-<li><p>No ativo ITSA4:</p></li>
-</ul></li>
-</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular os retornos logarítmicos</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>retornos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precos, <span class="cf">function</span>(x) {</span>
@@ -704,57 +695,13 @@ $brfs3.sa
 2025-06-27 -0.0100001215</code></pre>
 </div>
 </div>
-</section>
-<section id="análise-média-desvio-padrão-dos-retornos-e-cálculo-do-risco-cv-dos-retornos" class="level1">
-<h1>Análise Média ,Desvio padrão dos Retornos e Cálculo do risco (CV) dos retornos</h1>
+<section id="análise-média-desvio-padrão-dos-retornos-e-cálculo-do-risco-cv-dos-retornos" class="level2">
+<h2 class="anchored" data-anchor-id="análise-média-desvio-padrão-dos-retornos-e-cálculo-do-risco-cv-dos-retornos">Análise Média ,Desvio padrão dos Retornos e Cálculo do risco (CV) dos retornos</h2>
+<p><img src="images/grafico_risco.PNG" class="img-fluid"></p>
 <ul>
-<li></li>
+<li>comentário: Neste mapa de risco, consideramos a volatilidade histórica (desvio padrão dos retornos) como métrica principal. Os resultados mostram que os ativos com maior risco são elet6, rent3 e lwsa3.</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo das estatísticas dos retornos</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>estat_retornos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(x) {</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  coefvar <span class="ot">&lt;-</span> (desvio <span class="sc">/</span> (media <span class="sc">*</span><span class="dv">100</span>)) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Media =</span> media, <span class="at">DesvioPadrao =</span> desvio, <span class="at">CoefVar =</span> coefvar)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>estat_retornos_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, estat_retornos)</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(estat_retornos_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(retornos))</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficos de barras</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(estat_retornos_df[, <span class="st">"Media"</span>],</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Média dos Retornos por Ativo"</span>,</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"skyblue"</span>, <span class="at">ylab =</span> <span class="st">"Média"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(estat_retornos_df[, <span class="st">"DesvioPadrao"</span>],</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Desvio Padrão dos Retornos por Ativo"</span>,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"tomato"</span>, <span class="at">ylab =</span> <span class="st">"Desvio Padrão"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(estat_retornos_df[, <span class="st">"CoefVar"</span>],</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Coeficiente de Variação (%) por Ativo"</span>,</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"gold"</span>, <span class="at">ylab =</span> <span class="st">"CV (%)"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+</section>
 </section>
 <section id="distribuição-dos-preços-e-retornos" class="level1">
 <h1>Distribuição dos preços e retornos</h1>
@@ -764,58 +711,58 @@ $brfs3.sa
 <li></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tickers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lwsa3.sa"</span>, <span class="st">"elet6.sa"</span>, <span class="st">"itsa4.sa"</span>, <span class="st">"rent3.sa"</span>, <span class="st">"brfs3.sa"</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ticker <span class="cf">in</span> tickers) {</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Layout 2x2</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(precos[[ticker]], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Série de Preços -"</span>, <span class="fu">toupper</span>(ticker)),</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">ylab =</span> <span class="st">"Preço"</span>, <span class="at">xlab =</span> <span class="st">"Data"</span>)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(precos[[ticker]], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma dos Preços -"</span>, <span class="fu">toupper</span>(ticker)),</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Preço"</span>)</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(retornos[[ticker]], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Retornos -"</span>, <span class="fu">toupper</span>(ticker)),</span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">ylab =</span> <span class="st">"Retorno"</span>, <span class="at">xlab =</span> <span class="st">"Data"</span>)</span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(retornos[[ticker]], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"lightcoral"</span>,</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma dos Retornos -"</span>, <span class="fu">toupper</span>(ticker)),</span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Retorno"</span>)</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tickers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lwsa3.sa"</span>, <span class="st">"elet6.sa"</span>, <span class="st">"itsa4.sa"</span>, <span class="st">"rent3.sa"</span>, <span class="st">"brfs3.sa"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ticker <span class="cf">in</span> tickers) {</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Layout 2x2</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(precos[[ticker]], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Série de Preços -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">ylab =</span> <span class="st">"Preço"</span>, <span class="at">xlab =</span> <span class="st">"Data"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(precos[[ticker]], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma dos Preços -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Preço"</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(retornos[[ticker]], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Retornos -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">ylab =</span> <span class="st">"Retorno"</span>, <span class="at">xlab =</span> <span class="st">"Data"</span>)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(retornos[[ticker]], <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"lightcoral"</span>,</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma dos Retornos -"</span>, <span class="fu">toupper</span>(ticker)),</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Retorno"</span>)</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -828,17 +775,17 @@ $brfs3.sa
 <li></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>estat_retornos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(x) {</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  coefvar <span class="ot">&lt;-</span> desvio <span class="sc">/</span> media <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  volatil <span class="ot">&lt;-</span> desvio <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">252</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Media =</span> media, <span class="at">DesvioPadrao =</span> desvio, <span class="at">CoefVar =</span> coefvar, <span class="at">VolatilidadeAnual =</span> volatil)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar como data frame</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>estat_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, estat_retornos)</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(estat_df, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>estat_retornos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(x) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  coefvar <span class="ot">&lt;-</span> desvio <span class="sc">/</span> media <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  volatil <span class="ot">&lt;-</span> desvio <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">252</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Media =</span> media, <span class="at">DesvioPadrao =</span> desvio, <span class="at">CoefVar =</span> coefvar, <span class="at">VolatilidadeAnual =</span> volatil)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar como data frame</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>estat_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, estat_retornos)</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(estat_df, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           Media DesvioPadrao     CoefVar VolatilidadeAnual
 lwsa3.sa  0.0069       0.0331    482.4629           52.4741
@@ -848,6 +795,7 @@ rent3.sa  0.0024       0.0245   1000.2478           38.8442
 brfs3.sa -0.0002       0.0248 -12196.9777           39.3416</code></pre>
 </div>
 </div>
+<p><img src="images/clipboard-2509955152.png" class="img-fluid"></p>
 </section>
 <section id="análise-da-distribuição-normal-dos-ativos" class="level1">
 <h1>Análise da Distribuição Normal Dos Ativos</h1>
@@ -855,70 +803,70 @@ brfs3.sa -0.0002       0.0248 -12196.9777           39.3416</code></pre>
 <li>Nesse momento</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout para mostrar 4 gráficos por ativo</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ticker <span class="cf">in</span> tickers) {</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula média e desvio padrão dos retornos do ativo</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(retornos[[ticker]])</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(retornos[[ticker]])</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 1 DP</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> desvio, media <span class="sc">+</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x1, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x1, y1, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 1 DP"</span>))</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 2 DP</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x2, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x2, y2, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 2 DP"</span>))</span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 3 DP</span></span>
-<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>  x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
-<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>  y3 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x3, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
-<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x3, y3, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
-<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 3 DP"</span>))</span>
-<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo mais amplo (±2.5σ)</span></span>
-<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>  x4 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="fl">2.5</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="fl">2.5</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
-<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>  y4 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x4, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
-<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x4, y4, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
-<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo mais amplo"</span>))</span>
-<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Layout para mostrar 4 gráficos por ativo</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ticker <span class="cf">in</span> tickers) {</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula média e desvio padrão dos retornos do ativo</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(retornos[[ticker]])</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(retornos[[ticker]])</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 1 DP</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> desvio, media <span class="sc">+</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x1, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x1, y1, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 1 DP"</span>))</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 2 DP</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x2, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x2, y2, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 2 DP"</span>))</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo de 3 DP</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>  x3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>  y3 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x3, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x3, y3, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo de 3 DP"</span>))</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Intervalo mais amplo (±2.5σ)</span></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>  x4 <span class="ot">&lt;-</span> <span class="fu">seq</span>(media <span class="sc">-</span> <span class="fl">2.5</span> <span class="sc">*</span> desvio, media <span class="sc">+</span> <span class="fl">2.5</span> <span class="sc">*</span> desvio, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>  y4 <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x4, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio)</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(x4, y4, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="fu">toupper</span>(ticker), <span class="st">"- Intervalo mais amplo"</span>))</span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Relatorio_Maria_Carolina_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -929,27 +877,27 @@ brfs3.sa -0.0002       0.0248 -12196.9777           39.3416</code></pre>
 <li></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para guardar os resultados</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>intervalos_dp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(r) {</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(r)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(r)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Probabilidades acumuladas para cada intervalo</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  dp1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> desvio, media, desvio)</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  dp2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media, desvio)</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  dp3 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media, desvio)</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Intervalo_1DP =</span> dp1,</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Intervalo_2DP =</span> dp2,</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Intervalo_3DP =</span> dp3)</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
-<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>intervalos_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, intervalos_dp)</span>
-<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(intervalos_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(retornos))</span>
-<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir resultados em porcentagem</span></span>
-<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(intervalos_df <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para guardar os resultados</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>intervalos_dp <span class="ot">&lt;-</span> <span class="fu">lapply</span>(retornos, <span class="cf">function</span>(r) {</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(r)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(r)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Probabilidades acumuladas para cada intervalo</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  dp1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> desvio, media, desvio)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  dp2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> desvio, media, desvio)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  dp3 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(media <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media, desvio) <span class="sc">-</span> <span class="fu">pnorm</span>(media <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> desvio, media, desvio)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">Intervalo_1DP =</span> dp1,</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Intervalo_2DP =</span> dp2,</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Intervalo_3DP =</span> dp3)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>intervalos_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, intervalos_dp)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(intervalos_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">names</span>(retornos))</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir resultados em porcentagem</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(intervalos_df <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         Intervalo_1DP Intervalo_2DP Intervalo_3DP
 LWSA3.SA         68.27         95.45         99.73
@@ -965,27 +913,27 @@ BRFS3.SA         68.27         95.45         99.73</code></pre>
 <ul>
 <li><p>safd</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores a testar</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">34.875</span>, <span class="dv">38</span>, <span class="dv">32</span>, <span class="dv">33</span>, <span class="fl">37.13255</span>, <span class="dv">39</span>, <span class="dv">41</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para guardar as probabilidades por ativo</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>probabilidades <span class="ot">&lt;-</span> <span class="fu">lapply</span>(tickers, <span class="cf">function</span>(ticker) {</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(precos[[ticker]])</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(precos[[ticker]])</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula pnorm para cada valor</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  probs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(valores, <span class="cf">function</span>(v) <span class="fu">pnorm</span>(v, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(probs)</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>prob_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, probabilidades)</span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(prob_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(tickers)</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(prob_df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"P(X ≤ "</span>, valores, <span class="st">")"</span>)</span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir com duas casas decimais</span></span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_df, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores a testar</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>valores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">34.875</span>, <span class="dv">38</span>, <span class="dv">32</span>, <span class="dv">33</span>, <span class="fl">37.13255</span>, <span class="dv">39</span>, <span class="dv">41</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista para guardar as probabilidades por ativo</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>probabilidades <span class="ot">&lt;-</span> <span class="fu">lapply</span>(tickers, <span class="cf">function</span>(ticker) {</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(precos[[ticker]])</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(precos[[ticker]])</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula pnorm para cada valor</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  probs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(valores, <span class="cf">function</span>(v) <span class="fu">pnorm</span>(v, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(probs)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>prob_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, probabilidades)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(prob_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(tickers)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(prob_df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"P(X ≤ "</span>, valores, <span class="st">")"</span>)</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir com duas casas decimais</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_df, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         P(X ≤ 34.875) P(X ≤ 38) P(X ≤ 32) P(X ≤ 33) P(X ≤ 37.13255) P(X ≤ 39)
 LWSA3.SA        1.0000    1.0000     1e+00     1e+00          1.0000    1.0000
@@ -1006,52 +954,59 @@ BRFS3.SA    1.0000</code></pre>
 <section id="cálculo-de-quantis-para-níveis-de-confiança" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-de-quantis-para-níveis-de-confiança">Cálculo de quantis para níveis de confiança</h2>
 <ul>
-<li>adfad</li>
+<li><p>adfad</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentis desejados</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>percentis <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.99</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista com os quantis por ativo</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>quantis_ativos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(tickers, <span class="cf">function</span>(ticker) {</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(precos[[ticker]])</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(precos[[ticker]])</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcula qnorm para os percentis</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  qnts <span class="ot">&lt;-</span> <span class="fu">sapply</span>(percentis, <span class="cf">function</span>(p) <span class="fu">qnorm</span>(p, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio))</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(qnts)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>quantis_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, quantis_ativos)</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(quantis_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(tickers)</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(quantis_df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Quantil_"</span>, percentis <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"%"</span>)</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir resultado arredondado</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(quantis_df, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Quantil_90% Quantil_95% Quantil_97.5% Quantil_99%
+LWSA3.SA        4.21        4.38          4.53        4.69
+ELET6.SA       47.65       48.11         48.51       48.97
+ITSA4.SA       11.31       11.52         11.70       11.91
+RENT3.SA       44.72       45.66         46.47       47.41
+BRFS3.SA       21.86       22.18         22.45       22.77</code></pre>
+</div>
+</div></li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="in"># Percentis desejados</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="in">percentis &lt;- c(0.90, 0.95, 0.975, 0.99)</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="in"># Lista com os quantis por ativo</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="in">quantis_ativos &lt;- lapply(tickers, function(ticker) {</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="in">  media &lt;- mean(precos[[ticker]])</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="in">  desvio &lt;- sd(precos[[ticker]])</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="in">  # Calcula qnorm para os percentis</span></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="in">  qnts &lt;- sapply(percentis, function(p) qnorm(p, mean = media, sd = desvio))</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="in">  return(qnts)</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="in">})</span></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="in"># Transformar em data frame</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="in">quantis_df &lt;- do.call(rbind, quantis_ativos)</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="in">rownames(quantis_df) &lt;- toupper(tickers)</span></span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a><span class="in">colnames(quantis_df) &lt;- paste0("Quantil_", percentis * 100, "%")</span></span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="in"># Exibir resultado arredondado</span></span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="in">round(quantis_df, 2)</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code></code></pre>
 </section>
 <section id="cálculo-da-densidade-para-valores-específicos" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-da-densidade-para-valores-específicos">Cálculo da densidade para valores específicos:</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcula densidades</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>densidades <span class="ot">&lt;-</span> <span class="fu">lapply</span>(tickers, <span class="cf">function</span>(ticker) {</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(precos[[ticker]])</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(precos[[ticker]])</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  dens <span class="ot">&lt;-</span> <span class="fu">sapply</span>(valores, <span class="cf">function</span>(v) <span class="fu">dnorm</span>(v, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio))</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dens)</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>dens_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, densidades)</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(dens_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(tickers)</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dens_df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"f("</span>, valores, <span class="st">")"</span>)</span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir com 6 casas decimais</span></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(dens_df, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcula densidades</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>densidades <span class="ot">&lt;-</span> <span class="fu">lapply</span>(tickers, <span class="cf">function</span>(ticker) {</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">&lt;-</span> <span class="fu">mean</span>(precos[[ticker]])</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  desvio <span class="ot">&lt;-</span> <span class="fu">sd</span>(precos[[ticker]])</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  dens <span class="ot">&lt;-</span> <span class="fu">sapply</span>(valores, <span class="cf">function</span>(v) <span class="fu">dnorm</span>(v, <span class="at">mean =</span> media, <span class="at">sd =</span> desvio))</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dens)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar em data frame</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>dens_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, densidades)</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(dens_df) <span class="ot">&lt;-</span> <span class="fu">toupper</span>(tickers)</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dens_df) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"f("</span>, valores, <span class="st">")"</span>)</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir com 6 casas decimais</span></span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(dens_df, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         f(34.875)    f(38)    f(32)    f(33) f(37.13255)    f(39)    f(41)
 LWSA3.SA  0.000000 0.000000 0.000000 0.000000    0.000000 0.000000 0.000000
@@ -1062,25 +1017,27 @@ BRFS3.SA  0.000000 0.000000 0.000000 0.000000    0.000000 0.000000 0.000000</cod
 </div>
 </div>
 </section>
-<section id="gráfico-de-risco" class="level2">
-<h2 class="anchored" data-anchor-id="gráfico-de-risco">Gráfico de risco</h2>
+<section id="gráfico-risco-do-ativo" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-risco-do-ativo">Gráfico Risco do Ativo</h2>
 <ul>
-<li><p>dfd</p>
-<p><img src="images/grafico_01-01.PNG" class="img-fluid"></p></li>
+<li>aqui vemos a dispersão em torno do ativo do retorno esperado , quanto maior for a dispesão em torno da média maior será a probabilidade de perda com</li>
 </ul>
-</section>
-<section id="gráfico" class="level2">
-<h2 class="anchored" data-anchor-id="gráfico">Gráfico</h2>
-<p><img src="images/grafico_02.PNG" class="img-fluid"></p>
-</section>
-<section id="gráfico-1" class="level2">
-<h2 class="anchored" data-anchor-id="gráfico-1">Gráfico</h2>
 <p><img src="images/grafico_coefva.PNG" class="img-fluid" width="587"></p>
 </section>
-<section id="gráfico-2" class="level2">
-<h2 class="anchored" data-anchor-id="gráfico-2">Gráfico</h2>
-<p><img src="images/grafico_risco.PNG" class="img-fluid" width="606"></p>
 </section>
+<section id="conclusão" class="level1">
+<h1>Conclusão</h1>
+<ul>
+<li><p>De acordo com a definição de <strong>aversão ao risco</strong> proposta por <strong>Hal Varian</strong>, um investidor avesso ao risco é aquele que prefere <strong>um valor esperado garantido de sua riqueza a uma aposta com o mesmo valor esperado, mas com maior incerteza</strong>. Essa postura visa preservar o capital diante da volatilidade dos ativos.</p>
+<p>Além disso, segundo a <strong>Instrução CVM nº 30</strong>, é dever do analista e consultor verificar a <strong>adequação dos produtos, serviços e operações ao perfil do cliente</strong>, assegurando que os investimentos estejam alinhados ao seu grau de tolerância ao risco.</p>
+<p>Com base nisso, ao analisarmos os gráficos fornecidos:</p>
+<ul>
+<li><p><strong>LWSA3 apresenta o maior risco absoluto (-121,97)</strong>, apesar de seu retorno (0,69) ter se destacado em termos relativos.</p></li>
+<li><p><strong>RENT3, embora tenha apresentado o maior retorno percentual (5,07%) e absoluto (10,00)</strong>, também traz um risco não desprezível.</p></li>
+<li><p><strong>ITSA4</strong> tem retorno modesto (1,12%), mas <strong>com um risco (5,75) que pode ser inadequado ao perfil conservador</strong>.</p></li>
+</ul>
+<p>Portanto, para manter a carteira <strong>alinhada com um perfil de investidor avesso ao risco</strong>, decidimos <strong>retirar os ativos LWSA3, RENT3 e ITSA4</strong>, priorizando opções com <strong>menor volatilidade</strong> e risco negativo reduzido, como <strong>ELET6 e BRFS3</strong>.</p></li>
+</ul>
 </section>
 
 </main>

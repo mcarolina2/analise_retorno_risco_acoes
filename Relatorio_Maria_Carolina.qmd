@@ -6,21 +6,21 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Olá investidor 
+## **Olá, investidor!**
 
--    me chamo Maria Carolina e nesse relatório vou realizar algumas análises sobre osobre as ações
+Meu nome é Maria Carolina e, neste relatório, apresentarei uma análise técnica das ações presentes em sua carteira: **ELET6.SA, RENT3.SA, BRFS3.SA, LWSA3.SA e ITSA4.SA**. A partir dos resultados obtidos, indicarei possíveis ajustes na composição da carteira, sempre levando em consideração o seu perfil **conservador** de investimento.
 
 ## Análise de Risco e Retorno :
 
-Nesta etapa, foi realizada uma análise dos **preços de fechamento dos ativos** no período de **01/04/2025 a 27/06/2025**, com o objetivo de compreender a dinâmica histórica e apoiar decisões futuras de investimento. A partir da estratégia **buy and hold** e do referencial **teórico de benchmark**, foram identificados:
+Nesta etapa, foi realizada uma análise dos preços de fechamento dos ativos no período de 01/04/2025 a 27/06/2025, com o objetivo de compreender a dinâmica histórica e apoiar decisões futuras de investimento. A partir da estratégia buy and hold e do referencial teórico de benchmark, foram identificados:
 
--   O **preço inicial** e **preço final** da série
+-   O preço inicial e preço final da série
 
--   O **menor** e o **maior valor** registrado no período,
+-   O menor e o maior valor registrado no período,
 
--   E a **variação percentual teórica** entre esses pontos, representando o potencial de crescimento ou retração do ativo.
+-   E a variação percentual teórica entre esses pontos, representando o potencial de crescimento ou retração do ativo.
 
--   Esses indicadores permitem observar a trajetória dos ativos e avaliar sua performance em termos de risco e retorno. O intuito é entender o comportamento passado para **operar de forma mais estratégica no futuro**.
+-   Esses indicadores permitem observar a trajetória dos ativos e avaliar sua performance em termos de risco e retorno. O intuito é entender o comportamento passado para operar de forma mais estratégica no futuro.
 
 Os dados utilizados foram carregados via script, considerando todos os ativos da carteira em análise.
 
@@ -102,7 +102,7 @@ length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
 
 <!-- -->
 
-# Análise de Dow 
+# Análise de Dow
 
 -   Após a análise das estratégias de *buy and hold* e da abordagem teórica baseada em máximos e mínimos, passamos agora a investigar a existência de tendências de alta ou baixa. Para isso, observaremos a evolução dos preços dos ativos da carteira e a compararemos com os respectivos volumes negociados, conforme os princípios da Teoria de Dow.
 
@@ -131,23 +131,21 @@ length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
 ## Indicadores Médias Moveis e Desvio padrão:
 
 -   Com a análise dos indicadores técnicos , a média e o desvio padrão buscamos entender as sinalizações e antecipações de uma tendências ou a reversão dela
-    -   No ativo BRFS3:
+    -   No ativo BRFS3: nesse ativo podemos verificar que a média acompanhou o preço do ativo ,confirmando a nossa hipótese da teoria de dow deu que vem uma tendência de alta![](images/média-brfs3.PNG)
 
-        ![](images/média-brfs3.PNG)
-
-    -   No ativo ELET6:
+    -   No ativo ELET6: nesse ativo vemos que a média acompanhou o preço mas de forma mais calma pois em momentos onde vimos a alta do preço vimos a média se aproximar mas de foma mais leve.
 
         ![](images/média-rlrt6.PNG)
 
-    -   No ativo LWSA3:
+    -   No ativo LWSA3:Podemos observar que em algums momentos que a média acompanhou levemente o preço ,mas na maior parte do gráfico ela se manteve estável.
 
         ![](images/média_lwsa3.PNG)
 
-    -   No ativo RENT3:
+    -   No ativo RENT3: vemos que a média acompanhou bastante o preço e isso confirma a nossa hipótese da nossa tendência de alta .
 
         ![](images/média-rent3.PNG)
 
-    -   No ativo ITSA4:
+    -   No ativo ITSA4: podemos notar que a média acompanha o preço , mas nos momentos em que houve uma queda ela caiu ,mas de fomra mais leve.
 
         ![](images/média-itsa4.PNG)
 
@@ -185,7 +183,7 @@ estat_df
 
 ## Calculando o Coeficiente de Variação dos Ativos :
 
--   dnwoibw
+-   Nesta imagem, a volatilidade histórica dos ativos é medida pelo desvio padrão dos retornos. O gráfico indica que LWSA3 possui a maior volatilidade, com um valor de 12,72, refletindo sua alta instabilidade nos retornos. Em seguida, estão RENT3 (6,23), ITS4 (5,42), BRFS3 (4,21) e ELET6 (2,74). A volatilidade é diretamente relacionada ao risco, sendo que ativos mais voláteis tendem a ser mais arriscados.
 
 ```{r}
 # Calcular coeficiente de variação para cada ativo
@@ -200,21 +198,7 @@ cv_estatisticas
 
 ![](images/clipboard-3974612332.png)
 
--   
-
 # Análise dos retornos
-
--   daaadfd
-
-    -   No ativo BRFS3:
-
-    -   No ativo ELET6:
-
-    -   No ativo LWSA3:
-
-    -   No ativo RENT3:
-
-    -   No ativo ITSA4:
 
 ```{r}
 # Calcular os retornos logarítmicos
@@ -227,75 +211,17 @@ retornos <- lapply(precos, function(x) {
 retornos
 ```
 
-# Análise Média ,Desvio padrão dos Retornos e Cálculo do risco (CV) dos retornos
+## Análise Média ,Desvio padrão dos Retornos e Cálculo do risco (CV) dos retornos
 
--   
+## Probabilidade de preços abaixo de um valor
 
-```{r}
-# Cálculo das estatísticas dos retornos
-estat_retornos <- lapply(retornos, function(x) {
-  media <- mean(x)
-  desvio <- sd(x)
-  coefvar <- (desvio / (media *100)) * 100
-  c(Media = media, DesvioPadrao = desvio, CoefVar = coefvar)
-})
+![](images/grafico_risco.PNG)
 
-# Transformar em data frame
-estat_retornos_df <- do.call(rbind, estat_retornos)
-rownames(estat_retornos_df) <- toupper(names(retornos))
+-   comentário: Neste mapa de risco, consideramos a volatilidade histórica (desvio padrão dos retornos) como métrica principal. Os resultados mostram que os ativos com maior risco são elet6, rent3 e lwsa3.
 
-# Gráficos de barras
-barplot(estat_retornos_df[, "Media"],
-        main = "Média dos Retornos por Ativo",
-        col = "skyblue", ylab = "Média", las = 2)
+# Medida De Volatilidade Anualizada(Amostra)
 
-barplot(estat_retornos_df[, "DesvioPadrao"],
-        main = "Desvio Padrão dos Retornos por Ativo",
-        col = "tomato", ylab = "Desvio Padrão", las = 2)
-
-barplot(estat_retornos_df[, "CoefVar"],
-        main = "Coeficiente de Variação (%) por Ativo",
-        col = "gold", ylab = "CV (%)", las = 2)
-
-
-```
-
-![](images/clipboard-3842366657.png)
-
--   comentário:
-
-# Distribuição dos preços e retornos
-
-## Histogramas
-
--   
-
-```{r}
-tickers <- c("lwsa3.sa", "elet6.sa", "itsa4.sa", "rent3.sa", "brfs3.sa")
-for (ticker in tickers) {
-  
-  # Layout 2x2
-  par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
-
-  plot(precos[[ticker]], main = paste("Série de Preços -", toupper(ticker)),
-       col = "darkgreen", ylab = "Preço", xlab = "Data")
-
-  hist(precos[[ticker]], breaks = 30, col = "skyblue",
-       main = paste("Histograma dos Preços -", toupper(ticker)),
-       xlab = "Preço")
-
-  plot(retornos[[ticker]], main = paste("Retornos -", toupper(ticker)),
-       col = "purple", ylab = "Retorno", xlab = "Data")
-
-  hist(retornos[[ticker]], breaks = 30, col = "lightcoral",
-       main = paste("Histograma dos Retornos -", toupper(ticker)),
-       xlab = "Retorno")
-}
-```
-
-# Medida de volatilidade anualizada (amostra)
-
--   
+-   Este gráfico ilustra a relação entre risco e retorno para os ativos analisados. O risco é representado pelas barras cinza, enquanto o retorno é representado pela curva azul. A análise mostra que LWSA3 tem o maior retorno (0,69), mas também apresenta um alto nível de risco (4,82). Outros ativos como ITS4 e RENT3 têm retornos moderados (0,21 e 0,24, respectivamente), com níveis de risco mais baixos (5,75 e 10,00). ELET6 e BRFS3 apresentam retornos negativos (-0,02), mas seus riscos são significativamente altos (-63,64 e -121,97, respectivamente), sugerindo que esses ativos podem ser considerados arriscados mesmo sem gerar ganhos.
 
 ```{r}
 estat_retornos <- lapply(retornos, function(x) {
@@ -315,7 +241,7 @@ round(estat_df, 4)
 
 # Análise da Distribuição Normal Dos Ativos
 
--   Nesse momento
+-   A análise comparativa das distribuições normais oferece um panorama claro do perfil de risco-retorno de cada ativo para o período analisado. **BRFS3** e **ITSA4** representam opções mais seguras e estáveis. **RENT3** e **ELET6** apresentam um risco maior, enquanto **LWSA3** se destaca como o ativo de maior volatilidade e, nesse período específico, também o de maior retorno médio, caracterizando-o como uma opção de alto risco e alto potencial de retorno.
 
 ```{r}
 # Layout para mostrar 4 gráficos por ativo
@@ -353,139 +279,10 @@ for (ticker in tickers) {
 
 ```
 
-## Probabilidades dentro dos intervalos da média:
-
--   
-
-```{r}
-# Lista para guardar os resultados
-intervalos_dp <- lapply(retornos, function(r) {
-  media <- mean(r)
-  desvio <- sd(r)
-
-  # Probabilidades acumuladas para cada intervalo
-  dp1 <- pnorm(media + desvio, media, desvio) - pnorm(media - desvio, media, desvio)
-  dp2 <- pnorm(media + 2 * desvio, media, desvio) - pnorm(media - 2 * desvio, media, desvio)
-  dp3 <- pnorm(media + 3 * desvio, media, desvio) - pnorm(media - 3 * desvio, media, desvio)
-
-  c(Intervalo_1DP = dp1,
-    Intervalo_2DP = dp2,
-    Intervalo_3DP = dp3)
-})
-
-# Transformar em data frame
-intervalos_df <- do.call(rbind, intervalos_dp)
-rownames(intervalos_df) <- toupper(names(retornos))
-
-# Exibir resultados em porcentagem
-round(intervalos_df * 100, 2)
-
-
-
-```
-
-## Probabilidade de preços abaixo de um valor
-
--   safd
-
-    ```{r}
-    # Valores a testar
-    valores <- c(34.875, 38, 32, 33, 37.13255, 39, 41)
-
-    # Lista para guardar as probabilidades por ativo
-    probabilidades <- lapply(tickers, function(ticker) {
-      media <- mean(precos[[ticker]])
-      desvio <- sd(precos[[ticker]])
-
-      # Calcula pnorm para cada valor
-      probs <- sapply(valores, function(v) pnorm(v, mean = media, sd = desvio, lower.tail = TRUE))
-
-      return(probs)
-    })
-
-    # Transformar em data frame
-    prob_df <- do.call(rbind, probabilidades)
-    rownames(prob_df) <- toupper(tickers)
-    colnames(prob_df) <- paste0("P(X ≤ ", valores, ")")
-
-    # Exibir com duas casas decimais
-    round(prob_df, 4)
-
-
-    ```
-
-## Cálculo de quantis para níveis de confiança
-
--   adfad
-
-```{{r}}
-# Percentis desejados
-percentis <- c(0.90, 0.95, 0.975, 0.99)
-
-# Lista com os quantis por ativo
-quantis_ativos <- lapply(tickers, function(ticker) {
-  media <- mean(precos[[ticker]])
-  desvio <- sd(precos[[ticker]])
-  
-  # Calcula qnorm para os percentis
-  qnts <- sapply(percentis, function(p) qnorm(p, mean = media, sd = desvio))
-  return(qnts)
-})
-
-# Transformar em data frame
-quantis_df <- do.call(rbind, quantis_ativos)
-rownames(quantis_df) <- toupper(tickers)
-colnames(quantis_df) <- paste0("Quantil_", percentis * 100, "%")
-
-# Exibir resultado arredondado
-round(quantis_df, 2)
-
-
-```
-
-## Cálculo da densidade para valores específicos:
-
-```{r}
-# Calcula densidades
-densidades <- lapply(tickers, function(ticker) {
-  media <- mean(precos[[ticker]])
-  desvio <- sd(precos[[ticker]])
-  
-  dens <- sapply(valores, function(v) dnorm(v, mean = media, sd = desvio))
-  return(dens)
-})
-
-# Transformar em data frame
-dens_df <- do.call(rbind, densidades)
-rownames(dens_df) <- toupper(tickers)
-colnames(dens_df) <- paste0("f(", valores, ")")
-
-# Exibir com 6 casas decimais
-round(dens_df, 6)
-
-
-```
-
-## Gráfico Risco do Ativo
-
--   aqui vemos a dispersão em torno do ativo do retorno esperado , quanto maior for a dispesão em torno da média maior será a probabilidade de perda com
-
-![](images/grafico_coefva.PNG){width="587"}
-
-![](images/grafico_risco.PNG){width="606"}
-
-# Conclusão 
+# Conclusão
 
 -   De acordo com a definição de **aversão ao risco** proposta por **Hal Varian**, um investidor avesso ao risco é aquele que prefere **um valor esperado garantido de sua riqueza a uma aposta com o mesmo valor esperado, mas com maior incerteza**. Essa postura visa preservar o capital diante da volatilidade dos ativos.
 
     Além disso, segundo a **Instrução CVM nº 30**, é dever do analista e consultor verificar a **adequação dos produtos, serviços e operações ao perfil do cliente**, assegurando que os investimentos estejam alinhados ao seu grau de tolerância ao risco.
 
-    Com base nisso, ao analisarmos os gráficos fornecidos:
-
-    -    **LWSA3 apresenta o maior risco absoluto (-121,97)**, apesar de seu retorno (0,69) ter se destacado em termos relativos.
-
-    -   **RENT3, embora tenha apresentado o maior retorno percentual (5,07%) e absoluto (10,00)**, também traz um risco não desprezível.
-
-    -   **ITSA4** tem retorno modesto (1,12%), mas **com um risco (5,75) que pode ser inadequado ao perfil conservador**.
-
-    Portanto, para manter a carteira **alinhada com um perfil de investidor avesso ao risco**, decidimos **retirar os ativos LWSA3, RENT3 e ITSA4**, priorizando opções com **menor volatilidade** e risco negativo reduzido, como **ELET6 e BRFS3**.
+    Portanto, para manter a carteira **alinhada com um perfil de investidor avesso ao risco**, decidimos **retirar os ativos LWSA3, RENT3 e ITSA4**, priorizando opções com **menor volatilidade** como **ELET6 e BRFS3**.
