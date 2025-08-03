@@ -195,4 +195,87 @@ GraficoPizzaCustom<-weightsPie(CarteiraCustomizada);GraficoPizzaCustom
 
 ```{r}
 
+CarteiraCustom<-portfolioSpec(portfolio=list(
+    weights=NULL,targetReturn=0.001, 
+    targetRisk=NULL, riskFreeRate=0.0553131,nFrontierPoints=50))
+  CarteiraCustom
+  
+  CarteiraCustomizada<-efficientPortfolio(Retornos, spec=CarteiraCustom)
+  CarteiraCustomizada
+  
+  getWeights(CarteiraCustomizada)
+  getTargetReturn(CarteiraCustomizada)
+  getTargetRisk(CarteiraCustomizada)
+  frontierPlot(portfolioFrontier(Retornos))
+  points(frontierPoints(CarteiraCustomizada)[,1], frontierPoints(CarteiraCustomizada)[,2], col="blue", pch=17, cex=1.5)
+  
+  singleAssetPoints(fronteira, col="pink", pch=19)
+  tangencyLines(fronteira, col="green", pch=19)
+  sharpeRatioLines(fronteira, col="red")
+  tailoredFrontierPlot(portfolioFrontier(Retornos))
+  
+  GraficoPizzaCustom<-weightsPie(CarteiraCustomizada);GraficoPizzaCustom
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAaCAYAAADFTB7LAAAAcElEQVR4Xu3OwQmAQAxE0bClWYCW5N06tM6V2YPg5CjoF/JhLoHAi6iqn9eOefUbqrYvHY0cQDLyAlKRNyARmYA0ZMLRkAlGQyaU72tkAtlim7r/vJqDUDjlKBROOQyFU2icQuMUGqfQuBEaV1XPOwEx96nYACK8+wAAAABJRU5ErkJggg==
+```
+
+```{r}
+
+CarteiraCustom<-portfolioSpec(portfolio=list(
+    weights=NULL,targetReturn=0.001, 
+    targetRisk=NULL, riskFreeRate=0.0553131,nFrontierPoints=50))
+  CarteiraCustom
+  
+  CarteiraCustomizada<-tangencyPortfolio(Retornos, spec=CarteiraCustom)
+  CarteiraCustomizada
+  
+  getWeights(CarteiraCustomizada)
+  getTargetReturn(CarteiraCustomizada)
+  getTargetRisk(CarteiraCustomizada)
+  frontierPlot(portfolioFrontier(Retornos))
+  points(frontierPoints(CarteiraCustomizada)[,1], frontierPoints(CarteiraCustomizada)[,2], col="blue", pch=17, cex=1.5)
+  
+  singleAssetPoints(fronteira, col="pink", pch=19)
+  tangencyLines(fronteira, col="green", pch=19)
+  sharpeRatioLines(fronteira, col="red")
+  tailoredFrontierPlot(portfolioFrontier(Retornos))
+  
+  GraficoPizzaCustom<-weightsPie(CarteiraCustomizada);GraficoPizzaCustom
+```
+
+## Um teste :
+
+```{r}
+CarteiraCustom <- portfolioSpec(portfolio = list(
+  weights = NULL,
+  targetReturn = 0.001,
+  targetRisk = NULL,
+  riskFreeRate = 0.0553131,   # 5,53% ao ano
+  nFrontierPoints = 50
+))
+CarteiraCustom <- portfolioSpec()
+setTargetReturn(CarteiraCustom) <- 0.001
+setRiskFreeRate(CarteiraCustom) <- 0.0553131 / 252
+CarteiraCustomizada <- tangencyPortfolio(Retornos, spec = CarteiraCustom)
+CarteiraCustomizada <- tangencyPortfolio(Retornos, spec = CarteiraCustom)
+getWeights(CarteiraCustomizada)       # Pesos da carteira
+getTargetReturn(CarteiraCustomizada)  # Retorno esperado
+getTargetRisk(CarteiraCustomizada)    # Risco (volatilidade esperada)
+fronteira <- portfolioFrontier(Retornos, spec = CarteiraCustom)
+
+# Gráfico da fronteira
+frontierPlot(fronteira)
+points(frontierPoints(CarteiraCustomizada)[,1],
+       frontierPoints(CarteiraCustomizada)[,2],
+       col = "blue", pch = 17, cex = 1.5)
+
+# Outros elementos visuais
+singleAssetPoints(fronteira, col = "pink", pch = 19)
+tangencyLines(fronteira, col = "green", pch = 19)
+sharpeRatioLines(fronteira, col = "red")
+
+# Gráfico mais elegante
+tailoredFrontierPlot(fronteira)
+GraficoPizzaCustom <- weightsPie(CarteiraCustomizada)
+GraficoPizzaCustom
+
 ```
