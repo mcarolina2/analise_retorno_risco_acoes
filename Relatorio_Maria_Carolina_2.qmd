@@ -1,0 +1,393 @@
+---
+title: "Relatorio_Maria_Carolina"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+## **Olá, investidor!**
+
+Meu nome é Maria Carolina e, neste relatório, apresentarei uma análise técnica das ações presentes em sua carteira: **ELET6.SA, RENT3.SA, BRFS3.SA, LWSA3.SA e ITSA4.SA**. A partir dos resultados obtidos, indicarei possíveis ajustes na composição da carteira, sempre levando em consideração o seu perfil **conservador** de investimento.
+
+## Análise de Risco e Retorno :
+
+Nesta etapa, foi realizada uma análise dos preços de fechamento dos ativos no período de 01/04/2025 a 27/06/2025, com o objetivo de compreender a dinâmica histórica e apoiar decisões futuras de investimento. A partir da estratégia buy and hold e do referencial teórico de benchmark, foram identificados:
+
+-   O preço inicial e preço final da série
+
+-   O menor e o maior valor registrado no período,
+
+-   E a variação percentual teórica entre esses pontos, representando o potencial de crescimento ou retração do ativo.
+
+-   Esses indicadores permitem observar a trajetória dos ativos e avaliar sua performance em termos de risco e retorno. O intuito é entender o comportamento passado para operar de forma mais estratégica no futuro.
+
+Os dados utilizados foram carregados via script, considerando todos os ativos da carteira em análise.
+
+```{r}
+library(tseries)
+
+# Datas de início e fim
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-29")
+
+# Baixando os dados dos 5 ativos
+lwsa3  <- get.hist.quote("lwsa3.sa",  quote = "Close", start = dataini, end = datafim)
+elet6 <- get.hist.quote("elet6.sa",  quote = "Close", start = dataini, end = datafim)
+itsa4  <- get.hist.quote("itsa4.sa",  quote = "Close", start = dataini, end = datafim)
+rent3  <- get.hist.quote("rent3.sa",  quote = "Close", start = dataini, end = datafim)
+brfs3  <- get.hist.quote("brfs3.sa",  quote = "Close", start = dataini, end = datafim)
+
+# Removendo valores ausentes
+lwsa3 <- na.omit(lwsa3)
+elet6 <- na.omit(elet6)
+itsa4 <- na.omit(itsa4)
+rent3 <- na.omit(rent3)
+brfs3 <- na.omit(brfs3)
+
+# Verificando quantidade de observações e visualizando os dados
+length(lwsa3); plot(lwsa3, main = "Ativo - LWSA3")
+length(elet6); plot(elet6, main = "Ativo - ELET6")
+length(itsa4); plot(itsa4, main = "Ativo - ITSA4")
+length(rent3); plot(rent3, main = "Ativo - RET3")
+length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
+
+```
+
+#### Gráficos Seguindo a Estratégia Buy and Hold:
+
+```{r}
+library(tseries)
+library(xts)
+library(zoo)
+
+plot_inicial_final <- function(serie, nome) {
+  datas <- index(serie)
+  preco <- coredata(serie)
+  
+  # Ponto inicial e final
+  data_ini <- datas[1]
+  preco_ini <- preco[1]
+  data_fim <- datas[length(datas)]
+  preco_fim <- preco[length(preco)]
+  
+  plot(serie, main = paste("Preço de fechamento -", nome), col = "blue")
+  points(data_ini, preco_ini, col = "green", pch = 19, cex = 1.5)
+  points(data_fim, preco_fim, col = "red", pch = 19, cex = 1.5)
+  
+  # Linha ligando primeiro e último
+  lines(c(data_ini, data_fim), c(preco_ini, preco_fim), col = "black", lwd = 2, lty = 2)
+  
+  legend("topright", legend = c("Primeiro dia", "Último dia"),
+         col = c("green", "red", "black"), pch = c(19, 19, NA), lty = c(NA, NA, 2), bty = "n")
+}
+
+# Aplicando para os ativos
+plot_inicial_final(lwsa3, "LWSA3")
+plot_inicial_final(elet6, "ELET6")
+plot_inicial_final(itsa4, "ITSA4")
+plot_inicial_final(rent3, "RENT3")
+plot_inicial_final(brfs3, "BRFS3")
+
+```
+
+-   A ITSA4 valorizou **35,68% (R\$2,99)**, com um volume impressionante de **R\$2,56 bilhões**, o maior da lista. Esse movimento reflete uma **alta sustentada** , ideal para estratégias de buy and hold. A consistência no volume e na valorização indica confiança do mercado.
+
+-   O ativo BRFS3 apresentou uma valorização de **41,23% (R\$6,82)** no período analisado, com volume negociado de **R\$726,36 milhões**. Esse desempenho, aliado ao volume significativo, indica uma **tendência de alta** , sugerindo forte interesse do mercado.
+
+-   Com uma valorização de **21,31% (R\$8,52)** e volume de **R\$114,55 milhões**, o ELET6 teve o desempenho mais modesto entre os ativos analisados. O baixo volume relativo sugere menor participação do mercado, mas ainda assim manteve uma trajetória positiva. Pode ser um ativo mais estável.
+
+-   Com valorização de **56,87% (R\$14,55)** e volume de **R\$806,45 milhões**, a RENT3 mostrou um equilíbrio entre crescimento e liquidez. O bom desempenho , indica uma **tendência de alta bem sustentada**, com participação ativa do mercado.
+
+-   Destaque absoluto, a LWSA3 subiu **85,54% (R\$1,99)** em **119 dias**, com volume de **R\$797,36 milhões**. Esse crescimento explosivo, quase o dobro dos demais ativos, sugere um **momento excepcional**, possivelmente impulsionado por fatores setoriais ou notícias específicas. Quem comprou e segurou obteve retornos extraordinários, mas a alta volatilidade exige atenção.
+
+## Estratégia Teórica do preço máximo e mínimo:
+
+```{r}
+plot_min_max <- function(serie, nome) {
+  datas <- index(serie)
+  preco <- coredata(serie)
+  
+  min_idx <- which.min(preco)
+  max_idx <- which.max(preco)
+  
+  data_min <- datas[min_idx]
+  preco_min <- preco[min_idx]
+  data_max <- datas[max_idx]
+  preco_max <- preco[max_idx]
+  
+  plot(serie, main = paste("Preço de fechamento -", nome), col = "gray")
+  points(data_min, preco_min, col = "blue", pch = 17, cex = 1.5)
+  points(data_max, preco_max, col = "orange", pch = 17, cex = 1.5)
+  
+  # Linha ligando mínimo e máximo
+  lines(c(data_min, data_max), c(preco_min, preco_max), col = "purple", lwd = 2, lty = 3)
+  
+  legend("topleft", legend = c("Mínimo", "Máximo"),
+         col = c("blue", "orange", "purple"), pch = c(17, 17, NA), lty = c(NA, NA, 3), bty = "n")
+}
+
+# Aplicando para os ativos
+plot_min_max(lwsa3, "LWSA3")
+plot_min_max(elet6, "ELET6")
+plot_min_max(itsa4, "ITSA4")
+plot_min_max(rent3, "RENT3")
+plot_min_max(brfs3, "BRFS3")
+
+```
+
+-   Ativo Brfs3: analisando a estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume em ambas conseguimo verificar que de fato há uma tedencia de alta no volume e que nos lembra a possibilidade de que o preço continuara caindo buscaremos na teoria de dow validar isso.
+
+<!-- -->
+
+-   Ativo Elet6: analisando as estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume verificamos que menteve um volume relativo baixo indicando ser um ativo mais modesto
+
+-   Ativo Itsa4: analisando as estratégia de buy and hold , a teórica de máximos e mínimos juntamento com o volume verificamos que ouve o aumento volume nos mostra que os investidores tem espectativas nesse ativo, mas há um ponto a se observar a zona de resistência.
+
+-   Ativo Rent3: analisando as estratégias de buy and hold , a teórica de máximos e mínimos juntamente com o volume verificamos que houve um diferença significativa no volume entre as duas estratégias ,mas devemos observar as possíveis áreas de resistências ao irmos para a teoria de dow
+
+-   Ativo Lwsa3: analisando as estraégias de buy and hold , a teorica de máximos e mínimos juntamento com o volume verificamos que mesmo com o volume alto precisamos de atenção para as regiões de resistências
+
+<!-- -->
+
+# Análise de Dow
+
+```{r}
+library(tseries)
+library(quantmod)
+library(TTR)
+
+# Coletando os dados do ativo
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-28")
+ativo <- get.hist.quote("lwsa3.sa", quote = "Close", start = dataini, end = datafim)
+ativo <- na.omit(ativo)
+
+# Detectar topos e fundos locais
+precos <- coredata(ativo)
+datas <- index(ativo)
+
+# Usando função de suavização (opcional)
+precos_suavizados <- SMA(precos, n = 3)
+
+# Detectar mudanças de direção simples
+fundos <- c()
+topos <- c()
+
+for (i in 2:(length(precos_suavizados) - 1)) {
+  if (!is.na(precos_suavizados[i])) {
+    if (precos_suavizados[i] < precos_suavizados[i - 1] && precos_suavizados[i] < precos_suavizados[i + 1]) {
+      fundos <- c(fundos, i)
+    } else if (precos_suavizados[i] > precos_suavizados[i - 1] && precos_suavizados[i] > precos_suavizados[i + 1]) {
+      topos <- c(topos, i)
+    }
+  }
+}
+
+# Plotar o gráfico
+plot(ativo, main = "Análise de Dow - LWSA3", col = "black")
+
+# Marcar topos e fundos
+points(datas[fundos], precos[fundos], col = "blue", pch = 17, cex = 1.2)  # Fundos
+points(datas[topos], precos[topos], col = "red", pch = 19, cex = 1.2)     # Topos
+
+# Traçar linhas conectando topos e fundos para indicar tendência
+for (i in 2:length(fundos)) {
+  lines(c(datas[fundos[i - 1]], datas[fundos[i]]),
+        c(precos[fundos[i - 1]], precos[fundos[i]]),
+        col = "blue", lwd = 2, lty = 2)
+}
+for (i in 2:length(topos)) {
+  lines(c(datas[topos[i - 1]], datas[topos[i]]),
+        c(precos[topos[i - 1]], precos[topos[i]]),
+        col = "red", lwd = 2, lty = 2)
+}
+
+legend("topleft", legend = c("Fundos", "Topos", "Tendência de Alta", "Tendência de Baixa"),
+       col = c("blue", "red", "blue", "red"), pch = c(17, 19, NA, NA), lty = c(NA, NA, 2, 2), bty = "n")
+
+
+```
+
+-   Após a análise das estratégias de *buy and hold* e da abordagem teórica baseada em máximos e mínimos, passamos agora a investigar a existência de tendências de alta ou baixa. Para isso, observaremos a evolução dos preços dos ativos da carteira e a compararemos com os respectivos volumes negociados, conforme os princípios da Teoria de Dow.
+
+<!-- -->
+
+-   Análise do ativo BRFS3: Ao compararmos os preços e volumes nas estratégias de buy and hold e na abordagem teórica de máximos e mínimos, observamos um movimento de alta nos preços acompanhado por um aumento no volume, o que reforça a força da tendência. Já na análise com base na Teoria de Dow, nota-se que o movimento de alta foi seguido por uma correção (destacada pelas linhas azuis), porém o padrão de topos e fundos ascendentes permanece visível em partes do gráfico. há indícios de que a tendência de alta poderá ser retomada.
+
+    ![](images/dow2_brfs3-02.PNG){width="569"}
+
+-   Análise do ativo ELET6 : ao compararmos os preços e volumes sob as estratégias de buy and hold e da abordagem teórica de máximos e mínimos, observamos que o preço apresentou uma leve valorização. Apesar desse ganho moderado, o volume negociado aumentou significativamente. Esse crescimento de volume, aliado à estabilidade ou leve alta dos preços, pode sinalizar um interesse contínuo dos investidores.
+
+    ![](images/dow2_elet6.PNG){width="432"}
+
+-   Análise do ativo ITSA6: Na análise do ativo ITSA6, ao compararmos os preços e volumes com base nas estratégias de buy and hold e na abordagem teórica de máximos e mínimos, observamos uma tendência de alta, com sucessivos topos e fundos . O aumento do volume em momentos de valorização reforça a Teoria de Dow, esse comportamento — altas acompanhadas por volume crescente — confirma a continuidade da tendência de alta.
+
+    ![](images/dow2_ITSA4.PNG){width="345"}
+
+-   Análise do ativo RENT3: Análise do ativo RENT3: na comparação entre os preços e volumes nas estratégias de buy and hold e na abordagem teórica de máximos e mínimos, observamos que o preço apresentou uma valorização constante, com formação de topos e fundos ascendentes, o que é um forte indicativo de tendência de alta segundo a Teoria de Dow.
+
+    ![](images/dow2_RENT3.PNG){width="314"}
+
+-   Análise do ativo LWSA3: Na comparação entre os preços e volumes nas estratégias de buy and hold e na abordagem teórica de máximos e mínimos, observamos que não houve uma grande oscilação de preços no curto prazo, mas o volume apresentou um aumento relevante. De acordo com a Teoria de Dow, esse comportamento — preço lateralizado com aumento de volume — pode ser interpretado como uma fase de acumulação, sinalizando uma possível tendência de alta futura.
+
+    ![](images/dow2_LSWA.PNG){width="319"}
+
+## Indicadores Médias Moveis e Desvio padrão:
+
+-   Com a análise dos indicadores técnicos , a média e o desvio padrão buscamos entender as sinalizações e antecipações de uma tendências ou a reversão dela
+    -   No ativo BRFS3: nesse ativo podemos verificar que a média acompanhou o preço do ativo ,confirmando a nossa hipótese da teoria de dow deu que vem uma tendência de alta![](images/média-brfs3.PNG)
+
+    -   No ativo ELET6: nesse ativo vemos que a média acompanhou o preço mas de forma mais calma pois em momentos onde vimos a alta do preço vimos a média se aproximar mas de foma mais leve.
+
+        ![](images/média-rlrt6.PNG)
+
+    -   No ativo LWSA3:Podemos observar que em algums momentos que a média acompanhou levemente o preço ,mas na maior parte do gráfico ela se manteve estável.
+
+        ![](images/média_lwsa3.PNG)
+
+    -   No ativo RENT3: vemos que a média acompanhou bastante o preço e isso confirma a nossa hipótese da nossa tendência de alta .
+
+        ![](images/média-rent3.PNG)
+
+    -   No ativo ITSA4: podemos notar que a média acompanha o preço , mas nos momentos em que houve uma queda ela caiu ,mas de fomra mais leve.
+
+        ![](images/média-itsa4.PNG)
+
+```{r}
+library(tseries)
+
+
+# Datas de início e fim
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-28")
+
+# Vetor com os tickers
+tickers <- c("lwsa3.sa", "elet6.sa", "itsa4.sa", "rent3.sa", "brfs3.sa")
+
+# Lista para armazenar os preços históricos
+precos <- list()
+
+# Baixando os dados e removendo NAs
+for (ticker in tickers) {
+  serie <- get.hist.quote(ticker, quote = "Close", start = dataini, end = datafim)
+  serie <- na.omit(serie)
+  precos[[ticker]] <- serie
+}
+
+# Função para calcular média e desvio padrão
+estatisticas <- lapply(precos, function(x) {
+  c(Media = mean(x), DesvioPadrao = sd(x))
+})
+
+# Exibindo resultados
+estatisticas
+estat_df <- do.call(rbind, estatisticas)
+estat_df
+```
+
+## Calculando o Coeficiente de Variação dos Ativos :
+
+-   Nesta imagem, a volatilidade histórica dos ativos é medida pelo desvio padrão dos retornos. O gráfico indica que LWSA3 possui a maior volatilidade, com um valor de 12,72, refletindo sua alta instabilidade nos retornos. Em seguida, estão RENT3 (6,23), ITS4 (5,42), BRFS3 (4,21) e ELET6 (2,74). A volatilidade é diretamente relacionada ao risco, sendo que ativos mais voláteis tendem a ser mais arriscados.
+
+```{r}
+# Calcular coeficiente de variação para cada ativo
+cv_estatisticas <- sapply(estatisticas, function(x) {
+  (x["DesvioPadrao"] / x["Media"]) * 100
+})
+
+# Exibir resultados
+cv_estatisticas
+
+```
+
+![](images/clipboard-3974612332.png)
+
+# Análise dos retornos
+
+```{r}
+# Calcular os retornos logarítmicos
+retornos <- lapply(precos, function(x) {
+  retorno <- diff(log(x))
+  na.omit(retorno)
+})
+
+# Visualizando os retornos de cada ativo
+retornos
+```
+
+## Análise Média ,Desvio padrão dos Retornos e Cálculo do risco (CV) dos retornos
+
+## Probabilidade de preços abaixo de um valor
+
+![](images/grafico_risco.PNG)
+
+-   comentário: Neste mapa de risco, consideramos a volatilidade histórica (desvio padrão dos retornos) como métrica principal. Os resultados mostram que os ativos com maior risco são elet6, rent3 e lwsa3.
+
+# Medida De Volatilidade Anualizada(Amostra)
+
+-   Este gráfico ilustra a relação entre risco e retorno para os ativos analisados. O risco é representado pelas barras cinza, enquanto o retorno é representado pela curva azul. A análise mostra que LWSA3 tem o maior retorno (0,69), mas também apresenta um alto nível de risco (4,82). Outros ativos como ITS4 e RENT3 têm retornos moderados (0,21 e 0,24, respectivamente), com níveis de risco mais baixos (5,75 e 10,00). ELET6 e BRFS3 apresentam retornos negativos (-0,02), mas seus riscos são significativamente altos (-63,64 e -121,97, respectivamente), sugerindo que esses ativos podem ser considerados arriscados mesmo sem gerar ganhos.
+
+```{r}
+estat_retornos <- lapply(retornos, function(x) {
+  media <- mean(x)
+  desvio <- sd(x)
+  coefvar <- desvio / media * 100
+  volatil <- desvio * sqrt(252) * 100
+  c(Media = media, DesvioPadrao = desvio, CoefVar = coefvar, VolatilidadeAnual = volatil)
+})
+
+# Organizar como data frame
+estat_df <- do.call(rbind, estat_retornos)
+round(estat_df, 4)
+```
+
+![](images/clipboard-2509955152.png)
+
+# Análise da Distribuição Normal Dos Ativos
+
+-   A análise comparativa das distribuições normais oferece um panorama claro do perfil de risco-retorno de cada ativo para o período analisado. **BRFS3** e **ITSA4** representam opções mais seguras e estáveis. **RENT3** e **ELET6** apresentam um risco maior, enquanto **LWSA3** se destaca como o ativo de maior volatilidade e, nesse período específico, também o de maior retorno médio, caracterizando-o como uma opção de alto risco e alto potencial de retorno.
+
+```{r}
+# Layout para mostrar 4 gráficos por ativo
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+
+for (ticker in tickers) {
+  # Calcula média e desvio padrão dos retornos do ativo
+  media <- mean(retornos[[ticker]])
+  desvio <- sd(retornos[[ticker]])
+
+  # Intervalo de 1 DP
+  x1 <- seq(media - desvio, media + desvio, length = 60)
+  y1 <- dnorm(x1, mean = media, sd = desvio)
+  plot(x1, y1, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo de 1 DP"))
+
+  # Intervalo de 2 DP
+  x2 <- seq(media - 2 * desvio, media + 2 * desvio, length = 60)
+  y2 <- dnorm(x2, mean = media, sd = desvio)
+  plot(x2, y2, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo de 2 DP"))
+
+  # Intervalo de 3 DP
+  x3 <- seq(media - 3 * desvio, media + 3 * desvio, length = 60)
+  y3 <- dnorm(x3, mean = media, sd = desvio)
+  plot(x3, y3, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo de 3 DP"))
+
+  # Intervalo mais amplo (±2.5σ)
+  x4 <- seq(media - 2.5 * desvio, media + 2.5 * desvio, length = 60)
+  y4 <- dnorm(x4, mean = media, sd = desvio)
+  plot(x4, y4, type = "l", lwd = 2, col = "red",
+       main = paste(toupper(ticker), "- Intervalo mais amplo"))
+}
+
+```
+
+# Conclusão
+
+-   De acordo com a definição de **aversão ao risco** proposta por **Hal Varian**, um investidor avesso ao risco é aquele que prefere **um valor esperado garantido de sua riqueza a uma aposta com o mesmo valor esperado, mas com maior incerteza**. Essa postura visa preservar o capital diante da volatilidade dos ativos.
+
+    Além disso, segundo a **Instrução CVM nº 30**, é dever do analista e consultor verificar a **adequação dos produtos, serviços e operações ao perfil do cliente**, assegurando que os investimentos estejam alinhados ao seu grau de tolerância ao risco.
+
+    Portanto, para manter a carteira **alinhada com um perfil de investidor avesso ao risco**, decidimos **retirar os ativos LWSA3, RENT3 e ITSA4**, priorizando opções com **menor volatilidade** como **ELET6 e BRFS3**.

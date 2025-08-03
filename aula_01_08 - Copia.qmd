@@ -6,7 +6,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Trajetoria 
+## Trajetoria
 
 ```{r}
 library(tseries)
@@ -37,7 +37,7 @@ length(rent3); plot(rent3, main = "Ativo - RET3")
 length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
 ```
 
-## Princípios da Diversificação 
+## Princípios da Diversificação
 
 ```{r}
 library(tseries)
@@ -198,7 +198,7 @@ points(0.0237,  0.0074, pch = 19, cex = 1.5, col = "red")
 
 ```
 
-## Gráfico de Pizza Mínima variância 
+## Gráfico de Pizza Mínima variância
 
 ```{r}
 MinimaVariancia<-minvariancePortfolio(Retornos)

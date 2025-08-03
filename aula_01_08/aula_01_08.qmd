@@ -214,8 +214,9 @@ CarteiraCustom<-portfolioSpec(portfolio=list(
   sharpeRatioLines(fronteira, col="red")
   tailoredFrontierPlot(portfolioFrontier(Retornos))
   
-  GraficoPizzaCustom<-weightsPie(CarteiraCustomizada);GraficoPizzaCustom
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAaCAYAAADFTB7LAAAAcElEQVR4Xu3OwQmAQAxE0bClWYCW5N06tM6V2YPg5CjoF/JhLoHAi6iqn9eOefUbqrYvHY0cQDLyAlKRNyARmYA0ZMLRkAlGQyaU72tkAtlim7r/vJqDUDjlKBROOQyFU2icQuMUGqfQuBEaV1XPOwEx96nYACK8+wAAAABJRU5ErkJggg==
+  GraficoPizzaCustom<-weightsPie(CarteiraCustomizada);
+  GraficoPizzaCustom
+
 ```
 
 ```{r}
