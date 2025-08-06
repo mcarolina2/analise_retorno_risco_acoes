@@ -79,7 +79,7 @@ class(Correl)  # Deve ser "data.frame"
 library(fBasics)
 
 # Teste de correlação entre duas variáveis (ex: lwsa3 e brfs3)
-Corr01 <- correlationTest(Correl$lwsa3, Correl$brfs3, Correl$elet6, Correl$itsa4, Correl$rent3, method = "pearson")
+Corr01 <- correlationTest(Correl$lwsa3, Correl$brfs3, method = "pearson")
 print(Corr01)
 
 # --- Matriz de correlação completa ---
@@ -87,7 +87,7 @@ matriz_cor <- cor(Correl, method = "pearson")
 print(matriz_cor)
 
 # --- Visualização gráfica da correlação entre dois ativos ---
-plot(Correl$rent3, Correl$brfs3, Correl$lwsa3, Correl$elet6, Correl$itsa4,
+plot(Correl$brfs3, Correl$lwsa3,
      main = "Correlação RENT3 x BRFS3",
      xlab = "RENT3", ylab = "BRFS3",
      col = "blue", pch = 16)
@@ -129,13 +129,18 @@ points(0.0237,0.0074,pch=19, cex=1.5, col="red")
 ### Carteira Sem Restrições de Retorno:
 
 ```{r}
+
 MinimaVariancia<-minvariancePortfolio(Retornos)
-PesosMinimos<-getWeights(MinimaVariancia);PesosMinimos
-RetornoCalculado<-getTargetReturn(MinimaVariancia);RetornoCalculado
-RiscoMinimo<-getTargetRisk(MinimaVariancia);RiscoMinimo
+PesosMinimos<-getWeights(MinimaVariancia)
+PesosMinimos
+RetornoCalculado<-getTargetReturn(MinimaVariancia) 
+RetornoCalculado
+RiscoMinimo<-getTargetRisk(MinimaVariancia)
+RiscoMinimo
 points(0.01183586 ,0.002906674,pch=19, cex=1.5, col="blue")
 
-GraficoPizza<-weightsPie(MinimaVariancia);GraficoPizza
+GraficoPizza<-weightsPie(MinimaVariancia, main = "gráfico - da carteira sem restrições de retorno")
+GraficoPizza
 ```
 
 ### Carteira ótima:
@@ -144,7 +149,7 @@ GraficoPizza<-weightsPie(MinimaVariancia);GraficoPizza
 
 CarteiraCustom<-portfolioSpec(portfolio=list(
     weights=NULL,targetReturn=0.005, 
-    targetRisk=NULL, riskFreeRate=0.0553131,nFrontierPoints=50))
+    targetRisk=NULL, riskFreeRate=0.0553131,nFrontierPoints=50, main = "gráfico - da carteira ótima"))
   CarteiraCustom
   
   CarteiraCustomizada<-efficientPortfolio(Retornos, spec=CarteiraCustom)

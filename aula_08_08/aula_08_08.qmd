@@ -90,4 +90,38 @@ print(extractWeights(resultado))
 
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Cálculo dos Retornos 
+
+```{r}
+Basico<-data.frame(na.omit(merge(lwsa3, elet6, itsa4, rent3, brfs3)));Basico
+names(Basico)<-c("lwsa3", "elet6", "itsa4", "rent3", "brfs3");Basico;length(brfs3)
+write.table(Basico,file="Basico.txt")
+
+dados<-read.table("Basico.txt", head=T);dados
+dados <- timeSeries(dados)
+dados
+
+Retornos<-returns(dados);Retornos
+View(data.frame(Retornos))
+require(fPortfolio)
+
+fronteira<-portfolioFrontier(Retornos);fronteira
+frontierPlot(fronteira, auto=F)
+points(0.0365,-0.0027,pch=19, cex=1.5, col="green")
+points(0.0203,-0.0002,pch=19, cex=1.5, col="green")
+points(0.0144,0.0049 ,pch=19, cex=1.5, col="green")
+points(0.0237,0.0074,pch=19, cex=1.5,col="red")
+
+```
+
+## Retorno-Alvo da Carteira
+
+```{r}
+
+```
+
+## Ativo Livro de Risco
+
+```{r}
+
+```
