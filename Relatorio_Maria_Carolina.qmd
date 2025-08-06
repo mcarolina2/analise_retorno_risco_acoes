@@ -29,7 +29,7 @@ library(tseries)
 
 # Datas de início e fim
 dataini <- as.Date("2025-04-01")
-datafim <- as.Date("2025-06-28")
+datafim <- as.Date("2025-06-29")
 
 # Baixando os dados dos 5 ativos
 lwsa3  <- get.hist.quote("lwsa3.sa",  quote = "Close", start = dataini, end = datafim)

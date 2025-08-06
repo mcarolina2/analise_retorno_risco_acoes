@@ -79,7 +79,7 @@ class(Correl)  # Deve ser "data.frame"
 library(fBasics)
 
 # Teste de correlação entre duas variáveis (ex: lwsa3 e brfs3)
-Corr01 <- correlationTest(Correl$lwsa3, Correl$brfs3, method = "pearson")
+Corr01 <- correlationTest(Correl$lwsa3, Correl$brfs3, Correl$elet6, Correl$itsa4, Correl$rent3, method = "pearson")
 print(Corr01)
 
 # --- Matriz de correlação completa ---
@@ -87,7 +87,7 @@ matriz_cor <- cor(Correl, method = "pearson")
 print(matriz_cor)
 
 # --- Visualização gráfica da correlação entre dois ativos ---
-plot(Correl$rent3, Correl$brfs3,
+plot(Correl$rent3, Correl$brfs3, Correl$lwsa3, Correl$elet6, Correl$itsa4,
      main = "Correlação RENT3 x BRFS3",
      xlab = "RENT3", ylab = "BRFS3",
      col = "blue", pch = 16)
@@ -101,7 +101,7 @@ library(corrplot)
 corrplot(matriz_cor, method = "color", addCoef.col = "black")
 ```
 
-# Princípio da Otimização: 
+# Princípio da Otimização:
 
 ### Cálculos do Retornos(logn):
 
@@ -278,5 +278,14 @@ sharpeRatioLines(fronteira, col = "red")
 tailoredFrontierPlot(fronteira)
 GraficoPizzaCustom <- weightsPie(CarteiraCustomizada)
 GraficoPizzaCustom
+
+```
+
+```{r}
+require(rbcb)
+require(ggplot2)
+SelicD <- get_series(11, start_date = "2025-01-01", end_date ="2025-06-29") 
+SelicD; View(SelicD); print(tail(SelicD))
+plot.ts(SelicD$'11', type="l", col="red", lw=3)
 
 ```

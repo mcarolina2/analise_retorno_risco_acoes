@@ -1,0 +1,93 @@
+---
+title: "aula_08_08"
+format: html
+editor: visual
+---
+
+## Desafio
+
+```{r}
+#install.packages("rbcb")
+
+require(rbcb)
+require(ggplot2)
+SelicD <- get_series(11, start_date = "2025-01-01", end_date ="2025-06-29") 
+SelicD; View(SelicD); print(tail(SelicD))
+plot.ts(SelicD$'11', type="l", col="red", lw=3)
+
+```
+
+```{r}
+
+#install.packages("ggplot2")
+{
+  colnames(SelicD) <- c("data", "selicdiaria")
+  
+  graficoselic <- ggplot(data = SelicD, aes(x = data, y = selicdiaria)) +
+  geom_line(color = "red", linewidth = 1.2) +  
+  labs(
+    title = "Evolução da Taxa Selic Diária",
+    subtitle = paste("Período de", format(as.Date("2025-01-01"), "%d/%m/%Y"), "a", format(as.Date("2025-06-29"), "%d/%m/%Y")),
+    x = "Data",
+    y = "Taxa de Juros (% a.d.)",
+    caption = "Fonte: Banco Central do Brasil (via pacote rbcb)"
+  ) +
+  theme_minimal() + 
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"), 
+    plot.subtitle = element_text(hjust = 0.5) 
+  )
+# Exibe o gráfico gerado
+print(graficoselic)
+
+}
+```
+
+You can add options to executable code like this
+
+```{r}
+
+library(quantmod)
+library(PerformanceAnalytics)
+library(PortfolioAnalytics)
+library(DEoptim)
+library(ROI)
+library(ROI.plugin.quadprog)
+library(tidyverse)
+
+# Lista dos ativos (os seus)
+ativos <- c("LWSA3.SA", "ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA")
+
+# Período de análise
+data_inicio <- as.Date("2025-04-01")
+data_fim <- as.Date("2025-06-29")
+
+getSymbols(ativos, from = data_inicio, to = data_fim)
+
+# Extrair preços de fechamento ajustado
+precos <- do.call(merge, lapply(ativos, function(x) Ad(get(x))))
+colnames(precos) <- ativos
+retornos <- na.omit(Return.calculate(precos, method = "log"))
+# Inicializa portfólio
+port <- portfolio.spec(assets = ativos)
+
+# Adiciona restrições básicas
+port <- add.constraint(port, type = "full_investment")
+port <- add.constraint(port, type = "long_only")
+
+# Adiciona objetivo: retorno-alvo (exemplo: 0.001 por dia)
+retorno_alvo <- 0.001
+port <- add.constraint(port, type = "return", return_target = retorno_alvo)
+
+# Adiciona objetivo de minimizar risco
+port <- add.objective(port, type = "risk", name = "StdDev")
+
+# Otimização
+resultado <- optimize.portfolio(retornos, portfolio = port, optimize_method = "ROI")
+
+# Pesos ótimos
+print(extractWeights(resultado))
+
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
