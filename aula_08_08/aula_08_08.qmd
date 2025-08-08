@@ -90,7 +90,7 @@ print(extractWeights(resultado))
 
 ```
 
-## Cálculo dos Retornos 
+## Cálculo dos Retornos
 
 ```{r}
 Basico<-data.frame(na.omit(merge(lwsa3, elet6, itsa4, rent3, brfs3)));Basico
@@ -117,11 +117,93 @@ points(0.0237,0.0074,pch=19, cex=1.5,col="red")
 ## Retorno-Alvo da Carteira
 
 ```{r}
+Basico<-data.frame(na.omit(merge(lwsa3, elet6, itsa4, rent3, brfs3)));Basico
+names(Basico)<-c("lwsa3", "elet6", "itsa4", "rent3", "brfs3");Basico;length(brfs3)
+write.table(Basico,file="Basico.txt")
 
+dados<-read.table("Basico.txt", head=T);dados
+dados <- timeSeries(dados)
+dados
+
+Retornos<-returns(dados);Retornos
+View(data.frame(Retornos))
+require(fPortfolio)
+
+fronteira<-portfolioFrontier(Retornos);fronteira
+frontierPlot(fronteira, auto=F)
+points(0.0365,-0.0027,pch=19, cex=1.5, col="green")
+points(0.0203,-0.0002,pch=19, cex=1.5, col="green")
+points(0.0144,0.0049 ,pch=19, cex=1.5, col="green")
+points(0.0237,0.0074,pch=19, cex=1.5, col="red")
+
+```
+
+## Média
+
+```{r}
+library(tseries)
+
+
+# Datas de início e fim
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-28")
+
+# Vetor com os tickers
+tickers <- c("lwsa3.sa", "elet6.sa", "itsa4.sa", "rent3.sa", "brfs3.sa")
+
+# Lista para armazenar os preços históricos
+precos <- list()
+
+# Baixando os dados e removendo NAs
+for (ticker in tickers) {
+  serie <- get.hist.quote(ticker, quote = "Close", start = dataini, end = datafim)
+  serie <- na.omit(serie)
+  precos[[ticker]] <- serie
+}
+
+# Função para calcular média e desvio padrão
+estatisticas <- lapply(precos, function(x) {
+  c(Media = mean(x), DesvioPadrao = sd(x))
+})
+
+# Exibindo resultados
+estatisticas
+estat_df <- do.call(rbind, estatisticas)
+estat_df
 ```
 
 ## Ativo Livro de Risco
 
 ```{r}
+
+#install.packages("ROI")
+#install.packages("ROI.plugin.quadprog")
+#install.packages("ROI.plugin.glpk")
+
+
+library(PortfolioAnalytics)
+library(DEoptim)
+library(ROI)
+library(ROI.plugin.quadprog)
+
+# Criar especificação do portfólio
+port_spec <- portfolio.spec(assets = colnames(Retornos))
+port_spec <- add.constraint(port_spec, type = "full_investment")  # soma dos pesos = 1
+port_spec <- add.constraint(port_spec, type = "long_only")        # sem venda a descoberto
+port_spec <- add.objective(port_spec, type = "risk", name = "var")  # minimizar variância
+port_spec <- add.objective(port_spec, type = "return", name = "mean")  # maximizar retorno
+
+# Otimizar e gerar a fronteira
+fronteira <- create.EfficientFrontier(R = Retornos, portfolio = port_spec,
+                                      type = "mean-StdDev", n.portfolios = 50)
+
+fronteira_df <- as.data.frame(fronteira)
+plot(fronteira_df$StdDev, fronteira_df$mean,
+     type = "l", lwd = 2, col = "blue",
+     xlab = "Risco (Desvio-Padrão)",
+     ylab = "Retorno Esperado",
+     main = "Fronteira Eficiente (Markowitz)")
+
+
 
 ```

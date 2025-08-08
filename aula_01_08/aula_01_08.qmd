@@ -123,7 +123,7 @@ frontierPlot(fronteira, auto=F)
 points(0.0365,-0.0027,pch=19, cex=1.5, col="green")
 points(0.0203,-0.0002,pch=19, cex=1.5, col="green")
 points(0.0144,0.0049 ,pch=19, cex=1.5, col="green")
-points(0.0237,0.0074,pch=19, cex=1.5, col="red")
+points(0.0237,0.0074,pch=19, cex=1.5,col="red")
 ```
 
 ### Carteira Sem Restrições de Retorno:
@@ -141,6 +141,33 @@ points(0.01183586 ,0.002906674,pch=19, cex=1.5, col="blue")
 
 GraficoPizza<-weightsPie(MinimaVariancia, main = "gráfico - da carteira sem restrições de retorno")
 GraficoPizza
+```
+
+```{r}
+# Calcular a carteira de mínima variância
+MinimaVariancia <- minvariancePortfolio(Retornos)
+
+# Obter os pesos da carteira
+PesosMinimos <- getWeights(MinimaVariancia)
+
+# Mostrar os pesos (opcional)
+print("Pesos da Carteira de Mínima Variância:")
+print(round(PesosMinimos, 4))
+
+# Calcular os retornos médios de cada ativo
+media_ativos <- colMeans(Retornos)
+
+# Calcular retorno esperado da carteira
+retorno_esperado <- sum(PesosMinimos * media_ativos)
+cat("Retorno Esperado da Carteira de Mínima Variância:", retorno_esperado, "\n")
+
+# Calcular risco da carteira (desvio padrão)
+cov_matrix <- cov(Retornos)
+risco_esperado <- sqrt(t(PesosMinimos) %*% cov_matrix %*% PesosMinimos)
+cat("Risco da Carteira (Desvio-Padrão):", risco_esperado, "\n")
+
+
+
 ```
 
 ### Carteira ótima:
@@ -224,6 +251,8 @@ CarteiraCustom<-portfolioSpec(portfolio=list(
 
 ```
 
+## 
+
 ```{r}
 
 CarteiraCustom<-portfolioSpec(portfolio=list(
@@ -292,5 +321,46 @@ require(ggplot2)
 SelicD <- get_series(11, start_date = "2025-01-01", end_date ="2025-06-29") 
 SelicD; View(SelicD); print(tail(SelicD))
 plot.ts(SelicD$'11', type="l", col="red", lw=3)
+
+```
+
+```{r}
+library(PortfolioAnalytics)
+library(DEoptim)
+library(ROI)
+library(ROI.plugin.quadprog)
+
+# Criar especificação do portfólio
+port_spec <- portfolio.spec(assets = colnames(retornos))
+port_spec <- add.constraint(port_spec, type = "full_investment")  # soma dos pesos = 1
+port_spec <- add.constraint(port_spec, type = "long_only")        # sem venda a descoberto
+port_spec <- add.objective(port_spec, type = "risk", name = "var")  # minimizar variância
+port_spec <- add.objective(port_spec, type = "return", name = "mean")  # maximizar retorno
+
+# Otimizar e gerar a fronteira
+fronteira <- create.EfficientFrontier(R = retornos, portfolio = port_spec,
+                                      type = "mean-StdDev", n.portfolios = 50)
+
+chart.EfficientFrontier(fronteira, match.col = "StdDev", type = "l", 
+                        main = "Fronteira Eficiente (sem ativo livre de risco)",
+                        xlab = "Risco (Desvio-Padrão)", ylab = "Retorno Esperado")
+
+```
+
+```{r}
+library(quantmod)
+library(PerformanceAnalytics)
+
+tickers <- c("ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA")
+getSymbols(tickers, from = "2025-04-01", to = "2025-06-29")
+
+precos <- na.omit(merge(Cl(ELET6.SA), Cl(ITSA4.SA), Cl(RENT3.SA), Cl(BRFS3.SA)))
+retornos <- na.omit(Return.calculate(precos))
+
+pesos <- c(0.415, 0.427, 0.015, 0.143)
+retorno_esperado <- Return.portfolio(retornos, weights = pesos, geometric = FALSE)
+
+mean(retorno_esperado) # retorno médio
+sd(retorno_esperado)   # risco (desvio padrão)
 
 ```
