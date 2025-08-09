@@ -354,11 +354,11 @@ library(PerformanceAnalytics)
 tickers <- c("ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA")
 getSymbols(tickers, from = "2025-04-01", to = "2025-06-29")
 
-precos <- na.omit(merge(Cl(ELET6.SA), Cl(ITSA4.SA), Cl(RENT3.SA), Cl(BRFS3.SA)))
-retornos <- na.omit(Return.calculate(precos))
+#precos <- na.omit(merge(Cl(ELET6.SA), Cl(ITSA4.SA), Cl(RENT3.SA), Cl(BRFS3.SA)))
+#retornos <- na.omit(Return.calculate(precos))
 
 pesos <- c(0.415, 0.427, 0.015, 0.143)
-retorno_esperado <- Return.portfolio(retornos, weights = pesos, geometric = FALSE)
+retorno_esperado <- Return.portfolio(Retornos, weights = pesos, geometric = FALSE)
 
 mean(retorno_esperado) # retorno médio
 sd(retorno_esperado)   # risco (desvio padrão)
