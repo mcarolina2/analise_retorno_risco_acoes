@@ -1,0 +1,180 @@
+---
+title: "Desafio_maria_carolina"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+library(tseries)
+
+# Datas de início e fim
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-29")
+
+# Baixando os dados dos 5 ativos
+lwsa3  <- get.hist.quote("lwsa3.sa",  quote = "Close", start = dataini, end = datafim)
+elet6 <- get.hist.quote("elet6.sa",  quote = "Close", start = dataini, end = datafim)
+itsa4  <- get.hist.quote("itsa4.sa",  quote = "Close", start = dataini, end = datafim)
+rent3  <- get.hist.quote("rent3.sa",  quote = "Close", start = dataini, end = datafim)
+brfs3  <- get.hist.quote("brfs3.sa",  quote = "Close", start = dataini, end = datafim)
+
+# Removendo valores ausentes
+lwsa3 <- na.omit(lwsa3)
+elet6 <- na.omit(elet6)
+itsa4 <- na.omit(itsa4)
+rent3 <- na.omit(rent3)
+brfs3 <- na.omit(brfs3)
+
+# Verificando quantidade de observações e visualizando os dados
+length(lwsa3); plot(lwsa3, main = "Ativo - LWSA3")
+length(elet6); plot(elet6, main = "Ativo - ELET6")
+length(itsa4); plot(itsa4, main = "Ativo - ITSA4")
+length(rent3); plot(rent3, main = "Ativo - RET3")
+length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
+
+```
+
+```{r}
+Basico<-data.frame(na.omit(merge(lwsa3, elet6, itsa4, rent3, brfs3)));Basico
+names(Basico)<-c("lwsa3", "elet6", "itsa4", "rent3", "brfs3");Basico;length(brfs3)
+write.table(Basico,file="Basico.txt")
+
+dados<-read.table("Basico.txt", head=T);dados
+dados <- timeSeries(dados)
+dados
+
+Retornos<-returns(dados);Retornos
+View(data.frame(Retornos))
+require(fPortfolio)
+
+fronteira<-portfolioFrontier(Retornos);fronteira
+frontierPlot(fronteira, auto=F)
+points(0.0365,-0.0027,pch=19, cex=1.5, col="green")
+points(0.0203,-0.0002,pch=19, cex=1.5, col="green")
+points(0.0144,0.0049 ,pch=19, cex=1.5, col="green")
+points(0.0237,0.0074,pch=19, cex=1.5,col="red")
+```
+
+```{r}
+CarteiraCustom<-portfolioSpec(portfolio=list(
+    weights=NULL,targetReturn=0.001, 
+    targetRisk=NULL, riskFreeRate=0.0553131,nFrontierPoints=50))
+  CarteiraCustom
+  
+  CarteiraCustomizada<-efficientPortfolio(Retornos, spec=CarteiraCustom)
+  CarteiraCustomizada
+  
+  getWeights(CarteiraCustomizada)
+  getTargetReturn(CarteiraCustomizada)
+  getTargetRisk(CarteiraCustomizada)
+  frontierPlot(portfolioFrontier(Retornos))
+  points(frontierPoints(CarteiraCustomizada)[,1], frontierPoints(CarteiraCustomizada)[,2], col="blue", pch=17, cex=1.5)
+  
+  singleAssetPoints(fronteira, col="pink", pch=19)
+  tangencyLines(fronteira, col="green", pch=19)
+  sharpeRatioLines(fronteira, col="red")
+  tailoredFrontierPlot(portfolioFrontier(Retornos))
+  
+  GraficoPizzaCustom<-weightsPie(CarteiraCustomizada);
+  GraficoPizzaCustom
+```
+
+```{r}
+# === RETORNO LOGARÍTMICO ===
+retornos_log <-(Retornos)
+retornos_log
+
+```
+
+## Probabilidade de ganho
+
+```{r}
+# Supondo que 'Retornos' é uma lista de vetores de retornos diários (um por ativo)
+estat_retornos <- lapply(Retornos, function(x) {
+  media <- mean(x)
+  desvio <- sd(x)
+  c(Media = media, DesvioPadrao = desvio)
+})
+
+# Converter para data frame
+estat_df <- do.call(rbind, estat_retornos) %>% 
+  round(4)
+
+# Calcular a média geral das médias dos ativos
+media_geral <- mean(estat_df[, "Media"])
+cat("Média geral das médias:", media_geral, "\n")
+
+```
+
+```{r}
+library(quantmod)
+library(BatchGetSymbols)
+library(dplyr)
+
+tickers <- c("LWSA3.SA", "ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA")
+
+# Baixar dados
+dados <- BatchGetSymbols(
+  tickers = tickers,
+  first.date = Sys.Date() - 7,
+  last.date = Sys.Date(),
+  thresh.bad.data = 0.75
+)
+
+# Extrair último preço
+df_precos <- dados$df.tickers %>%
+  group_by(ticker) %>%
+  filter(ref.date == max(ref.date)) %>%
+  select(ticker, price.close) %>%
+  rename(Ticker = ticker, Preco_Atual = price.close)
+```
+
+```{r}
+# Juntar os data frames (estatísticas + preços)
+df_final <- cbind(
+  Ticker = rownames(estat_df),
+  as.data.frame(estat_df),
+  Preco_Atual = df_precos$Preco_Atual
+)
+
+# Calcular limites de ±2 desvios padrão em termos de preço futuro
+df_final <- df_final %>%
+  mutate(
+    Limite_Inferior = Preco_Atual * exp((Media - 2 * DesvioPadrao) * 1),  # 1 dia à frente
+    Limite_Superior = Preco_Atual * exp((Media + 2 * DesvioPadrao) * 1),
+    Probabilidade_2DP = round(pnorm(2) - pnorm(-2), 4) * 100  # 95.45%
+  )
+
+# Ordenar por ticker
+df_final <- df_final[order(df_final$Ticker), ]
+
+print(df_final)
+```
+
+```{r}
+library(dplyr)
+
+# Supondo que df_final já existe (com Limite_Inferior e Limite_Superior)
+df_final <- df_final %>%
+  mutate(
+    # Média dos limites
+    Media_Limites = (Limite_Inferior + Limite_Superior) / 2,
+    
+    # Logaritmo natural dos valores
+    ln_Limite_Inferior = log(Limite_Inferior),
+    ln_Limite_Superior = log(Limite_Superior),
+    ln_Media_Limites = log(Media_Limites)
+  )
+
+# Visualizar o resultado
+print(df_final %>% select(Ticker, Limite_Inferior, Limite_Superior, Media_Limites, 
+                          ln_Limite_Inferior, ln_Limite_Superior, ln_Media_Limites))
+```
