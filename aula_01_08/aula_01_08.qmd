@@ -364,3 +364,32 @@ mean(retorno_esperado) # retorno médio
 sd(retorno_esperado)   # risco (desvio padrão)
 
 ```
+
+```{r}
+library(quantmod)
+library(PerformanceAnalytics)
+
+tickers <- c("ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA")
+getSymbols(tickers, from = "2025-04-01", to = "2025-06-29")
+
+precos <- na.omit(merge(Cl(ELET6.SA), Cl(ITSA4.SA), Cl(RENT3.SA), Cl(BRFS3.SA)))
+retornos <- na.omit(Return.calculate(precos))
+
+pesos <- c(0.358, 0.475, 0.032, 0.135)
+retorno_esperado <- Return.portfolio(retornos, weights = pesos, geometric = FALSE)
+
+mean(retorno_esperado) # retorno médio
+sd(retorno_esperado)   # risco (desvio padrão)
+
+```
+
+```{r}
+# Em R:
+valores <- c(4000, 54000, 104000)
+utilidade <- c(60, 230, 320)
+
+plot(valores, utilidade, type = "o", pch = 19,
+     main = "Função de Utilidade Não Linear",
+     xlab = "Rendimento (R$)", ylab = "Utilidade")
+
+```
