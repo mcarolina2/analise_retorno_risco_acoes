@@ -4,13 +4,11 @@ format: html
 editor: visual
 ---
 
-## Quarto
+# Desafio 
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+-   Professor Sinezio
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+-   Aluna Maria Carolina
 
 ```{r}
 library(tseries)
@@ -87,17 +85,9 @@ CarteiraCustom<-portfolioSpec(portfolio=list(
   GraficoPizzaCustom
 ```
 
-```{r}
-# === RETORNO LOGARÍTMICO ===
-retornos_log <-(Retornos)
-retornos_log
-
-```
-
 ## Probabilidade de ganho
 
 ```{r}
-# Supondo que 'Retornos' é uma lista de vetores de retornos diários (um por ativo)
 estat_retornos <- lapply(Retornos, function(x) {
   media <- mean(x)
   desvio <- sd(x)
@@ -105,7 +95,7 @@ estat_retornos <- lapply(Retornos, function(x) {
 })
 
 # Converter para data frame
-estat_df <- do.call(rbind, estat_retornos) %>% 
+estat_df <- do.call(rbind, estat_retornos)
   round(4)
 
 # Calcular a média geral das médias dos ativos
@@ -114,12 +104,14 @@ cat("Média geral das médias:", media_geral, "\n")
 
 ```
 
+## Preço atual do ativo 
+
 ```{r}
 library(quantmod)
 library(BatchGetSymbols)
 library(dplyr)
 
-tickers <- c("LWSA3.SA", "ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA")
+tickers <- c("ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA")
 
 # Baixar dados
 dados <- BatchGetSymbols(
@@ -135,17 +127,11 @@ df_precos <- dados$df.tickers %>%
   filter(ref.date == max(ref.date)) %>%
   select(ticker, price.close) %>%
   rename(Ticker = ticker, Preco_Atual = price.close)
+df_precos
 ```
 
 ```{r}
-# Juntar os data frames (estatísticas + preços)
-df_final <- cbind(
-  Ticker = rownames(estat_df),
-  as.data.frame(estat_df),
-  Preco_Atual = df_precos$Preco_Atual
-)
-
-# Calcular limites de ±2 desvios padrão em termos de preço futuro
+#Calcular limites de ±2 desvios padrão em termos de preço futuro
 df_final <- df_final %>%
   mutate(
     Limite_Inferior = Preco_Atual * exp((Media - 2 * DesvioPadrao) * 1),  # 1 dia à frente
@@ -160,21 +146,47 @@ print(df_final)
 ```
 
 ```{r}
-library(dplyr)
+# Média dos limites inferior e superior entre todos os ativos
+media_limite_inferior <- mean(df_final$Limite_Inferior)
+media_limite_superior <- mean(df_final$Limite_Superior)
 
-# Supondo que df_final já existe (com Limite_Inferior e Limite_Superior)
-df_final <- df_final %>%
-  mutate(
-    # Média dos limites
-    Media_Limites = (Limite_Inferior + Limite_Superior) / 2,
-    
-    # Logaritmo natural dos valores
-    ln_Limite_Inferior = log(Limite_Inferior),
-    ln_Limite_Superior = log(Limite_Superior),
-    ln_Media_Limites = log(Media_Limites)
-  )
+# Mostrar resultados
+media_limite_inferior
+media_limite_superior
 
-# Visualizar o resultado
-print(df_final %>% select(Ticker, Limite_Inferior, Limite_Superior, Media_Limites, 
-                          ln_Limite_Inferior, ln_Limite_Superior, ln_Media_Limites))
 ```
+
+```{r}
+
+# valor esperado
+valor_esperado= (0.5*(22) ) + (0.5*(24))
+valor_esperado
+```
+
+```{r}
+#U(valor esperado)
+Utilidade_valor_esperado = log(valor_esperado)
+Utilidade_valor_esperado
+```
+
+```{r}
+#utilidade da aposta 
+Utilidade_da_aposta = (0.5 *log(22)) + (0.5 *log(24))
+Utilidade_da_aposta
+```
+
+```{r}
+#equivalente certo
+Equivalante_certo = exp(3.134518)
+Equivalante_certo
+```
+
+![](images/Imagem do WhatsApp de 2025-08-09 à(s) 16.19.38_b80e477d.jpg)
+
+### média e desvio padrão
+
+![](images/Imagem do WhatsApp de 2025-08-09 à(s) 16.38.56_c421d59f.jpg)
+
+## Conclusão 
+
+-   Com base no cálculos realizados ,concluímos que a melhor escolha para o investidor é investir seu dinheiro no título.

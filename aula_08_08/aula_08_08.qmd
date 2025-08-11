@@ -208,31 +208,16 @@ plot(fronteira_df$StdDev, fronteira_df$mean,
 
 ```
 
-{{<  >}}
-#install.packages("ROI")
-#install.packages("ROI.plugin.quadprog")
-#install.packages("ROI.plugin.glpk")
+{{< >}} #install.packages("ROI") #install.packages("ROI.plugin.quadprog") #install.packages("ROI.plugin.glpk")
 
-
-library(PortfolioAnalytics)
-library(DEoptim)
-library(ROI)
-library(ROI.plugin.quadprog)
+library(PortfolioAnalytics) library(DEoptim) library(ROI) library(ROI.plugin.quadprog)
 
 # Criar especificação do portfólio
-port_spec <- portfolio.spec(assets = colnames(Retornos))
-port_spec <- add.constraint(port_spec, type = "full_investment")  # soma dos pesos = 1
-port_spec <- add.constraint(port_spec, type = "long_only")        # sem venda a descoberto
-port_spec <- add.objective(port_spec, type = "risk", name = "var")  # minimizar variância
-port_spec <- add.objective(port_spec, type = "return", name = "mean")  # maximizar retorno
+
+port_spec \<- portfolio.spec(assets = colnames(Retornos)) port_spec \<- add.constraint(port_spec, type = "full_investment") \# soma dos pesos = 1 port_spec \<- add.constraint(port_spec, type = "long_only") \# sem venda a descoberto port_spec \<- add.objective(port_spec, type = "risk", name = "var") \# minimizar variância port_spec \<- add.objective(port_spec, type = "return", name = "mean") \# maximizar retorno
 
 # Otimizar e gerar a fronteira
-fronteira <- create.EfficientFrontier(R = Retornos, portfolio = port_spec,
-                                      type = "mean-StdDev", n.portfolios = 50)
 
-fronteira_df <- as.data.frame(fronteira)
-plot(fronteira_df$StdDev, fronteira_df$mean,
-     type = "l", lwd = 2, col = "blue",
-     xlab = "Risco (Desvio-Padrão)",
-     ylab = "Retorno Esperado",
-     main = "Fronteira Eficiente (Markowitz)")
+fronteira \<- create.EfficientFrontier(R = Retornos, portfolio = port_spec, type = "mean-StdDev", n.portfolios = 50)
+
+fronteira_df \<- as.data.frame(fronteira) plot(fronteira_df$StdDev, fronteira_df$mean, type = "l", lwd = 2, col = "blue", xlab = "Risco (Desvio-Padrão)", ylab = "Retorno Esperado", main = "Fronteira Eficiente (Markowitz)")
