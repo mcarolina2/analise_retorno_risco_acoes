@@ -1,0 +1,50 @@
+---
+title: "aula_29_08"
+format: html
+editor: visual
+---
+
+## Aula do dia 29/08/2025 
+
+```{r}
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-06-27")
+
+library(rbcb)
+install.packages("GetBCBData")
+
+selic <- get_series(11, start_date = dataini,end_date =datafim);selic 
+library(zoo)
+Selic=zoo(selic$'11')
+index(Selic)=selic$date
+Selic;plot(Selic) 
+```
+
+```{r}
+# Código do professor 
+library(yfR)
+library(GetBCBData)
+library(yfR)
+library(zoo)
+
+ibov_df <- yf_get("^BVSP", first_date = "2025-04-01", last_date = Sys.Date())
+ibov <- zoo(ibov_df$price_adjusted, order.by = ibov_df$ref_date)
+
+dados2=na.omit(merge(ibov,Selic))
+dados2=data.frame(index(dados2), dados2)
+names(dados2)=c("Data", "ibovespa", "SELIC")
+attach(dados2); dados2
+
+Ativos=merge(lwsa3, elet6, itsa4, rent3, brfs3,ibovespa,Selic)
+length(na.omit(Ativos[,1]))
+Data1=index(na.omit(Ativos));length(Data1)
+
+CarteiraBETA=data.frame(na.omit(Ativos),na.omit(Data1))
+names(CarteiraBETA)=c("lwsa3", "elet6", "itsa4", "rent3", "brfs3","ibovespa","Selic", "Data1")
+attach(CarteiraBETA)
+options(max.print=99999)
+CarteiraBETA
+n=length(CarteiraBETA[,1]); n
+CarteiraBETA[n,]
+write.table(CarteiraBETA, file="BetaCarteira.txt")
+```
