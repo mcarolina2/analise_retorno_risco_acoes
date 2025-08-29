@@ -4,14 +4,43 @@ format: html
 editor: visual
 ---
 
-## Aula do dia 29/08/2025 
+## Aula do dia 29/08/2025
+
+```{r}
+library(tseries)
+
+# Datas de início e fim
+dataini <- as.Date("2025-04-01")
+datafim <- as.Date("2025-08-11")
+
+# Baixando os dados dos 5 ativos
+lwsa3  <- get.hist.quote("lwsa3.sa",  quote = "Close", start = dataini, end = datafim)
+elet6 <- get.hist.quote("elet6.sa",  quote = "Close", start = dataini, end = datafim)
+itsa4  <- get.hist.quote("itsa4.sa",  quote = "Close", start = dataini, end = datafim)
+rent3  <- get.hist.quote("rent3.sa",  quote = "Close", start = dataini, end = datafim)
+brfs3  <- get.hist.quote("brfs3.sa",  quote = "Close", start = dataini, end = datafim)
+
+# Removendo valores ausentes
+lwsa3 <- na.omit(lwsa3)
+elet6 <- na.omit(elet6)
+itsa4 <- na.omit(itsa4)
+rent3 <- na.omit(rent3)
+brfs3 <- na.omit(brfs3)
+
+# Verificando quantidade de observações e visualizando os dados
+length(lwsa3); plot(lwsa3, main = "Ativo - LWSA3")
+length(elet6); plot(elet6, main = "Ativo - ELET6")
+length(itsa4); plot(itsa4, main = "Ativo - ITSA4")
+length(rent3); plot(rent3, main = "Ativo - RET3")
+length(brfs3); plot(brfs3, main = "Ativo - BRFS3")
+```
 
 ```{r}
 dataini <- as.Date("2025-04-01")
-datafim <- as.Date("2025-06-27")
+datafim <- as.Date("2025-08-11")
 
 library(rbcb)
-install.packages("GetBCBData")
+#install.packages("GetBCBData")
 
 selic <- get_series(11, start_date = dataini,end_date =datafim);selic 
 library(zoo)
@@ -21,30 +50,364 @@ Selic;plot(Selic)
 ```
 
 ```{r}
-# Código do professor 
+#Código que eu pesquisei
 library(yfR)
 library(GetBCBData)
-library(yfR)
 library(zoo)
+library(rbcb)
 
+# 1) IBOVESPA em formato zoo
 ibov_df <- yf_get("^BVSP", first_date = "2025-04-01", last_date = Sys.Date())
-ibov <- zoo(ibov_df$price_adjusted, order.by = ibov_df$ref_date)
+ibov <- zoo(ibov_df$price_adjusted, order.by = ibov_df$ref_date)  # objeto zoo
 
-dados2=na.omit(merge(ibov,Selic))
-dados2=data.frame(index(dados2), dados2)
-names(dados2)=c("Data", "ibovespa", "SELIC")
+# 3) Junta Ibov + Selic
+dados2 <- na.omit(merge(ibov, Selic))
+dados2 <- data.frame(Data = index(dados2), coredata(dados2))
+names(dados2) <- c("Data", "Ibovespa", "SELIC")
 attach(dados2); dados2
 
-Ativos=merge(lwsa3, elet6, itsa4, rent3, brfs3,ibovespa,Selic)
-length(na.omit(Ativos[,1]))
-Data1=index(na.omit(Ativos));length(Data1)
+# 4) Ativos em formato zoo
+ativos_df <- yf_get(
+  tickers = c("LWSA3.SA", "ELET6.SA", "ITSA4.SA", "RENT3.SA", "BRFS3.SA"),
+  first_date = "2025-04-01",
+  last_date = Sys.Date()
+)
 
-CarteiraBETA=data.frame(na.omit(Ativos),na.omit(Data1))
-names(CarteiraBETA)=c("lwsa3", "elet6", "itsa4", "rent3", "brfs3","ibovespa","Selic", "Data1")
+# Converte cada ativo para zoo separado (igual professor fez)
+lwsa3 <- zoo(ativos_df$price_adjusted[ativos_df$ticker == "LWSA3.SA"],
+             order.by = ativos_df$ref_date[ativos_df$ticker == "LWSA3.SA"])
+
+elet6 <- zoo(ativos_df$price_adjusted[ativos_df$ticker == "ELET6.SA"],
+             order.by = ativos_df$ref_date[ativos_df$ticker == "ELET6.SA"])
+
+itsa4 <- zoo(ativos_df$price_adjusted[ativos_df$ticker == "ITSA4.SA"],
+             order.by = ativos_df$ref_date[ativos_df$ticker == "ITSA4.SA"])
+
+rent3 <- zoo(ativos_df$price_adjusted[ativos_df$ticker == "RENT3.SA"],
+             order.by = ativos_df$ref_date[ativos_df$ticker == "RENT3.SA"])
+
+brfs3 <- zoo(ativos_df$price_adjusted[ativos_df$ticker == "BRFS3.SA"],
+             order.by = ativos_df$ref_date[ativos_df$ticker == "BRFS3.SA"])
+
+# 5) Merge geral (igual professor)
+Ativos <- merge(lwsa3, elet6, itsa4, rent3, brfs3, ibov, Selic)
+length(na.omit(Ativos[,1]))
+Data1 <- index(na.omit(Ativos)); length(Data1)
+
+# 6) Carteira BETA final
+CarteiraBETA <- data.frame(na.omit(Ativos), Data1)
+names(CarteiraBETA) <- c("lwsa3", "elet6", "itsa4", "rent3", "brfs3", "Ibovespa", "Selic", "Data1")
 attach(CarteiraBETA)
-options(max.print=99999)
+
+options(max.print = 99999)
 CarteiraBETA
-n=length(CarteiraBETA[,1]); n
+n <- length(CarteiraBETA[,1]); n
 CarteiraBETA[n,]
-write.table(CarteiraBETA, file="BetaCarteira.txt")
+
+# 7) Exportar
+write.table(CarteiraBETA, file = "BetaCarteira.txt", row.names = FALSE)
+
+
+```
+
+```{r}
+CarteiraBETA<-read.table("BetaCarteira.txt", head=T)
+names(CarteiraBETA)<-c("lwsa3", "elet6", "itsa4", "rent3", "brfs3","ibovespa","Selic", "Data1")
+attach(CarteiraBETA)
+CarteiraBETA; length((CarteiraBETA$Selic))
+
+CarteiraBETA$ibovespa;length(CarteiraBETA$ibovespa)
+CarteiraBETA$lwsa3;length(CarteiraBETA$lwsa3)
+CarteiraBETA$Selic;length(CarteiraBETA$Selic)
+
+ribov=diff(log(ibovespa));ribov;length(ribov)
+Ribov=ribov*100;Ribov;mean(Ribov)
+RSelic=CarteiraBETA$Selic[-1];length(CarteiraBETA$Selic[-1])
+RSelic
+
+rlwsa3=diff(log(CarteiraBETA$lwsa3[-1]));length(CarteiraBETA$lwsa3[-1])
+relet6=diff(log(CarteiraBETA$elet6[-1]));length(CarteiraBETA$elet6[-1])
+ritsa4=diff(log(CarteiraBETA$itsa4[-1]));length(CarteiraBETA$itsa4[-1])
+rrent3=diff(log(CarteiraBETA$rent3[-1]));length(CarteiraBETA$rent3[-1])
+rbrfs3=diff(log(CarteiraBETA$brfs3[-1]));length(CarteiraBETA$brfs3[-1])
+
+#RIbov=(rIbov-Selic[-1])
+Ribov=(ribov-RSelic);length(Ribov);Ribov
+Rlwsa3=rlwsa3-RSelic[-1]
+Rlwsa3;length(Rlwsa3)
+Relet6=relet6-RSelic[-1]
+Ritsa4=ritsa4-RSelic[-1]
+Rrent3=rrent3-RSelic[-1]
+Rbrfs3=rbrfs3-RSelic[-1]
+
+#Cálculo do Beta vivt3 (+...)------------------------------------------------------------------------------------------------------
+
+Betalwsa3=lm(Rlwsa3~Ribov[-1])
+Betalwsa3
+Betaelet6=lm(Relet6~Ribov[-1]);Betaelet6
+Betaitsa4=lm(Ritsa4~Ribov[-1]);Betaitsa4
+Betarent3=lm(Rrent3~Ribov[-1]);Betarent3
+Betabrfs3=lm(Rbrfs3~Ribov[-1]);Betabrfs3
+
+#### Testes Econométricos - Hipóteses do MQO
+##Ativo lwsa3
+{
+  #Ativo1
+  coef(Betalwsa3)
+  library(lmtest)
+  coeftest(Betalwsa3)
+  summary(Betalwsa3) 
+  
+  residuos<-residuals(Betalwsa3)
+  residuos
+  plot(residuos, type="l", col="red")
+  abline(h=0, col="blue", lw=3)
+  hist(residuos, main="", col="cadetblue", prob=T, xlab = names(residuos)[1], breaks = 30)
+  curve(expr=dnorm(x,mean=mean(residuos),sd=sd(residuos)),col="red",add= TRUE, lwd=2)
+  
+  require(fBasics)
+  jarqueberaTest(residuos)
+  qqnorm(residuos, col="blue")
+  qqline(residuos, col="red")
+  shapiro.test(residuos)
+  
+  #install.packages("FinTS")
+  
+  library(lmtest)
+  coeftest(Betalwsa3)
+  length(residuos);length(residuos)*0.15
+  gqtest(Betalwsa3, fraction=8, alternative = "greater")
+  bptest(Betalwsa3)
+  library(whitestrap)
+  white_test(Betalwsa3)
+  dwtest(Betalwsa3)
+  library(FinTS)
+  ArchTest(residuos, lags = 2)
+  
+  Box.test(residuos, lag=12, type="Box-Pierce")
+}
+```
+
+```{r}
+{
+  #Ativo1
+  coef(Betalwsa3)
+  library(lmtest)
+  coeftest(Betalwsa3)
+  summary(Betalwsa3) 
+  
+  residuos<-residuals(Betalwsa3)
+  residuos
+  plot(residuos, type="l", col="red")
+  abline(h=0, col="blue", lw=3)
+  hist(residuos, main="", col="cadetblue", prob=T, xlab = names(residuos)[1], breaks = 30)
+  curve(expr=dnorm(x,mean=mean(residuos),sd=sd(residuos)),col="red",add= TRUE, lwd=2)
+  
+  require(fBasics)
+  jarqueberaTest(residuos)
+  qqnorm(residuos, col="blue")
+  qqline(residuos, col="red")
+  shapiro.test(residuos)
+  
+  #install.packages("FinTS")
+  
+  library(lmtest)
+  coeftest(Betalwsa3)
+  length(residuos);length(residuos)*0.15
+  gqtest(Betalwsa3, fraction=8, alternative = "greater")
+  bptest(Betalwsa3)
+  library(whitestrap)
+  white_test(Betalwsa3)
+  dwtest(Betalwsa3)
+  library(FinTS)
+  ArchTest(residuos, lags = 2)
+  
+  Box.test(residuos, lag=12, type="Box-Pierce")
+}
+```
+
+```{r}
+##Ativo elet6
+{
+  #Ativo1
+  coef(Betaelet6)
+  library(lmtest)
+  coeftest(Betaelet6)
+  summary(Betaelet6) 
+  
+  residuos<-residuals(Betaelet6)
+  residuos
+  plot(residuos, type="l", col="red")
+  abline(h=0, col="blue", lw=3)
+  hist(residuos, main="", col="cadetblue", prob=T, xlab = names(residuos)[1], breaks = 30)
+  curve(expr=dnorm(x,mean=mean(residuos),sd=sd(residuos)),col="red",add= TRUE, lwd=2)
+  
+  require(fBasics)
+  jarqueberaTest(residuos)
+  qqnorm(residuos, col="blue")
+  qqline(residuos, col="red")
+  shapiro.test(residuos)
+  
+  #install.packages("FinTS")
+  
+  library(lmtest)
+  coeftest(Betaelet6)
+  length(residuos);length(residuos)*0.15
+  gqtest(Betaelet6, fraction=8, alternative = "greater")
+  bptest(Betaelet6)
+  library(whitestrap)
+  white_test(Betaelet6)
+  dwtest(Betaelet6)
+  library(FinTS)
+  ArchTest(residuos, lags = 2)
+  
+  Box.test(residuos, lag=12, type="Box-Pierce")
+}
+```
+
+```{r}
+##Ativo itsa4
+{
+  #Ativo1
+  coef(Betaitsa4)
+  library(lmtest)
+  coeftest(Betaitsa4)
+  summary(Betaitsa4) 
+  
+  residuos<-residuals(Betaitsa4)
+  residuos
+  plot(residuos, type="l", col="red")
+  abline(h=0, col="blue", lw=3)
+  hist(residuos, main="", col="cadetblue", prob=T, xlab = names(residuos)[1], breaks = 30)
+  curve(expr=dnorm(x,mean=mean(residuos),sd=sd(residuos)),col="red",add= TRUE, lwd=2)
+  
+  require(fBasics)
+  jarqueberaTest(residuos)
+  qqnorm(residuos, col="blue")
+  qqline(residuos, col="red")
+  shapiro.test(residuos)
+  
+  #install.packages("FinTS")
+  
+  library(lmtest)
+  coeftest(Betaitsa4)
+  length(residuos);length(residuos)*0.15
+  gqtest(Betaitsa4, fraction=8, alternative = "greater")
+  bptest(Betaitsa4)
+  library(whitestrap)
+  white_test(Betaitsa4)
+  dwtest(Betaitsa4)
+  library(FinTS)
+  ArchTest(residuos, lags = 2)
+  
+  Box.test(residuos, lag=12, type="Box-Pierce")
+}
+```
+
+```{r}
+{
+  #Ativo1 rent3
+  coef(Betarent3)
+  library(lmtest)
+  coeftest(Betarent3)
+  summary(Betarent3) 
+  
+  residuos<-residuals(Betarent3)
+  residuos
+  plot(residuos, type="l", col="red")
+  abline(h=0, col="blue", lw=3)
+  hist(residuos, main="", col="cadetblue", prob=T, xlab = names(residuos)[1], breaks = 30)
+  curve(expr=dnorm(x,mean=mean(residuos),sd=sd(residuos)),col="red",add= TRUE, lwd=2)
+  
+  require(fBasics)
+  jarqueberaTest(residuos)
+  qqnorm(residuos, col="blue")
+  qqline(residuos, col="red")
+  shapiro.test(residuos)
+  
+  install.packages("FinTS")
+  
+  library(lmtest)
+  coeftest(Betarent3)
+  length(residuos);length(residuos)*0.15
+  gqtest(Betarent3, fraction=8, alternative = "greater")
+  bptest(Betarent3)
+  library(whitestrap)
+  white_test(Betarent3)
+  dwtest(Betarent3)
+  library(FinTS)
+  ArchTest(residuos, lags = 2)
+  
+  Box.test(residuos, lag=12, type="Box-Pierce")
+}
+```
+
+```{r}
+##Ativo brfs3
+{
+  #Ativo1
+  coef(Betabrfs3)
+  library(lmtest)
+  coeftest(Betabrfs3)
+  summary(Betabrfs3) 
+  
+  residuos<-residuals(Betabrfs3)
+  residuos
+  plot(residuos, type="l", col="red")
+  abline(h=0, col="blue", lw=3)
+  hist(residuos, main="", col="cadetblue", prob=T, xlab = names(residuos)[1], breaks = 30)
+  curve(expr=dnorm(x,mean=mean(residuos),sd=sd(residuos)),col="red",add= TRUE, lwd=2)
+  
+  require(fBasics)
+  jarqueberaTest(residuos)
+  qqnorm(residuos, col="blue")
+  qqline(residuos, col="red")
+  shapiro.test(residuos)
+  
+  install.packages("FinTS")
+  
+  library(lmtest)
+  coeftest(Betabrfs3)
+  length(residuos);length(residuos)*0.15
+  gqtest(Betabrfs3, fraction=8, alternative = "greater")
+  bptest(Betabrfs3)
+  library(whitestrap)
+  white_test(Betabrfs3)
+  dwtest(Betabrfs3)
+  library(FinTS)
+  ArchTest(residuos, lags = 2)
+  
+  Box.test(residuos, lag=12, type="Box-Pierce")
+}
+```
+
+```{r}
+names=c("lwsa3", "elet6", "itsa4", "rent3", "brfs3")
+BETA.Mercado=c(Betalwsa3$coef[2],Betaelet6$coef[2],Betaitsa4$coef[2],Betarent3$coef[2],Betabrfs3$coef[2]);names;BETA.Mercado
+
+
+bpb<-barplot(BETA.Mercado, main="Gráf.4:Cálculo do Beta-Mercado da Carteira Sugerida (90 dias)", ylim=c(0,3.0),names.arg=names, ylab="Percentual %", cex.names=1, col="darkgreen")
+text(x = as.vector(bpb), y = BETA.Mercado, 
+     label =  round(BETA.Mercado, 2), pos = 3, 
+     col = "black",cex=0.8)
+```
+
+```{r}
+summary(Betalwsa3)
+```
+
+```{r}
+summary(Betaelet6)
+```
+
+```{r}
+summary(Betaitsa4)
+```
+
+```{r}
+summary(Betarent3)
+```
+
+```{r}
+summary(Betabrfs3)
 ```
